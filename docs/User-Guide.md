@@ -25,7 +25,7 @@
 ### Basic Usage Flow
 ```bash
 # 1. Collect training data
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --services "frontend" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
@@ -55,13 +55,13 @@ python3 -m src.mora.cli.main [COMMAND] [OPTIONS]
 #### 1. Parallel Experiments (Recommended)
 ```bash
 # Collect data for multiple services
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --services "frontend,cartservice,checkoutservice" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
 
 # Collect data for all remaining services
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --services "adservice,currencyservice,emailservice,paymentservice,productcatalogservice,recommendationservice,shippingservice" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
@@ -70,7 +70,7 @@ python3 -m src.mora.cli.main train parallel-experiments \
 #### 2. Single Service Collection
 ```bash
 # Collect data for a specific service
-python3 -m src.mora.cli.main train isolated-experiment \
+python3 -m src.mora.cli.main train collect-data \
     --service "frontend" \
     --config-file config/resource-optimized.yaml
 ```
@@ -163,7 +163,7 @@ curl http://localhost:9090/-/ready
 #### 2. Start Data Collection
 ```bash
 # Resource-optimized collection (recommended)
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --services "frontend,cartservice,checkoutservice" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
@@ -345,7 +345,7 @@ python3 evaluate_models/validate_model.py
 ./scripts/monitor_data_collection.sh
 
 # Check process status
-ps aux | grep parallel-experiments
+ps aux | grep collect-data-parallel
 
 # View system resources
 ./scripts/check_system_resources.sh
@@ -373,9 +373,9 @@ echo "🔍 MOrA DATA COLLECTION MONITOR"
 echo "Timestamp: $(date)"
 
 # Check process status
-if pgrep -f "parallel-experiments" > /dev/null; then
+if pgrep -f "collect-data-parallel" > /dev/null; then
     echo "✅ Data collection process is RUNNING"
-    echo "   PID: $(pgrep -f 'parallel-experiments')"
+    echo "   PID: $(pgrep -f 'collect-data-parallel')"
 else
     echo "❌ Data collection process is NOT RUNNING"
 fi
@@ -487,7 +487,7 @@ free -h
 ./scripts/check_system_resources.sh
 
 # Use resource-optimized configuration
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
 ```

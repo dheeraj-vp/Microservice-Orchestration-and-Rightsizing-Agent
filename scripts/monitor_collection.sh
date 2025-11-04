@@ -4,9 +4,9 @@ echo "Timestamp: $(date)"
 echo ""
 
 # Check if process is running
-if pgrep -f "parallel-experiments" > /dev/null; then
+if pgrep -f "collect-data-parallel" > /dev/null; then
     echo "✅ Data collection process is RUNNING"
-    echo "   PID: $(pgrep -f 'parallel-experiments')"
+    echo "   PID: $(pgrep -f 'collect-data-parallel')"
 else
     echo "❌ Data collection process is NOT RUNNING"
 fi

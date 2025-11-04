@@ -244,6 +244,71 @@ class DataPipeline:
         """
         return self.service_discovery.get_microservices(self.namespace)
     
+    def get_deployed_services(self) -> List[str]:
+        """
+        Get list of deployed services (alias for discover_all_services)
+        
+        Returns:
+            List of service names
+        """
+        return self.discover_all_services()
+    
+    def test_prometheus_metrics(self) -> Dict[str, Any]:
+        """
+        Test Prometheus metrics availability
+        
+        Returns:
+            Dictionary with metrics status information
+        """
+        available_metrics = []
+        working_metrics = []
+        
+        try:
+            # Test basic Prometheus query
+            test_query = "up"
+            try:
+                result = self.prometheus_client.client.custom_query(query=test_query)
+                if result:
+                    available_metrics.append('up')
+                    working_metrics.append('up')
+            except Exception as e:
+                logger.debug(f"Could not query 'up': {e}")
+            
+            # Test some common container metrics
+            test_metrics = [
+                'container_cpu_usage_seconds_total',
+                'container_memory_working_set_bytes',
+                'kube_pod_info'
+            ]
+            
+            for metric in test_metrics:
+                try:
+                    query_result = self.prometheus_client.client.custom_query(query=metric)
+                    if query_result:
+                        available_metrics.append(metric)
+                        # Check if it has data
+                        if isinstance(query_result, list) and len(query_result) > 0:
+                            working_metrics.append(metric)
+                except Exception as e:
+                    logger.debug(f"Metric {metric} not available: {e}")
+            
+            return {
+                'available_metrics': available_metrics,
+                'working_metrics': working_metrics,
+                'total_available': len(available_metrics),
+                'total_working': len(working_metrics)
+            }
+            
+        except Exception as e:
+            logger.error(f"Error testing Prometheus metrics: {e}")
+            return {
+                'available_metrics': [],
+                'working_metrics': [],
+                'total_available': 0,
+                'total_working': 0,
+                'error': str(e)
+            }
+    
     def get_system_summary(self) -> Dict[str, Any]:
         """
         Get a summary of the entire system

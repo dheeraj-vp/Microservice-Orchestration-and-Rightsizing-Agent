@@ -513,7 +513,7 @@ def evaluate(service, all, model_dir, data_dir, verbose):
             console.print(traceback.format_exc())
 
 
-@train.command()
+@train.command(name='collect-data')
 @click.option('--service', required=True, help='Service to collect data for')
 @click.option('--config-file', default='config/resource-optimized.yaml', help='Configuration file path')
 def collect_data(service, config_file):
@@ -601,7 +601,7 @@ def collect_data(service, config_file):
         console.print("[yellow]Make sure Minikube is running and the configuration file is valid[/yellow]")
 
 
-@train.command()
+@train.command(name='collect-data-parallel')
 @click.option('--services', required=True, help='Comma-separated list of services to collect data for')
 @click.option('--config-file', default='config/resource-optimized.yaml', help='Configuration file path')
 @click.option('--max-workers', default=1, help='Maximum number of parallel workers')

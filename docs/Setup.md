@@ -300,7 +300,7 @@ curl "http://localhost:9090/api/v1/query?query=up"
 python3 -m src.mora.cli.main --help
 
 # Test data collection
-python3 -m src.mora.cli.main train parallel-experiments --services frontend --config-file config/resource-optimized.yaml --max-workers 1
+python3 -m src.mora.cli.main train collect-data-parallel --services frontend --config-file config/resource-optimized.yaml --max-workers 1
 
 # Test model training
 python3 train_models/train_working_lstm_prophet.py

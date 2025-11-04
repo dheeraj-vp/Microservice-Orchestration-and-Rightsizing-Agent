@@ -7,7 +7,7 @@
 Service: frontend
 Pipeline Type: lightweight_lstm_prophet
 Trained At: 2025-10-27T22:02:11.215721
-Evaluated At: 2025-10-27T22:35:53.571152
+Evaluated At: 2025-11-03T23:12:38.573950
 Test Samples: 0
 
 📊 PERFORMANCE METRICS

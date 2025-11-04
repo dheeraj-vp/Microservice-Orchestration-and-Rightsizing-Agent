@@ -4,15 +4,15 @@
 
 📈 OVERALL STATISTICS
 ----------------------------------------
-Total Services: 4
-Successful Evaluations: 4
+Total Services: 5
+Successful Evaluations: 5
 Failed Evaluations: 0
-Average Score: 54.2%
+Average Score: 55.3%
 
 🎯 PERFORMANCE DISTRIBUTION
 ----------------------------------------
 Excellent (≥80%): 0
-Good (≥60%): 3
+Good (≥60%): 4
 Acceptable (≥40%): 0
 Below Standard (<40%): 1
 
@@ -22,5 +22,6 @@ frontend: 73.3% - ✅ GOOD
 checkoutservice: 16.7% - ❌ BELOW STANDARDS
 cartservice: 66.7% - ✅ GOOD
 adservice: 60.0% - ✅ GOOD
+paymentservice: 60.0% - ✅ GOOD
 
 ================================================================================
