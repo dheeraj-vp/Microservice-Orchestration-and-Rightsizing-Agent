@@ -1,0 +1,38 @@
+# MOrA Fast Training Configuration - Reduced scope for quick validation
+# Copy from default.yaml but with minimal experiment set
+
+kubernetes:
+  namespace: "hipster-shop"
+  context: "minikube"
+
+prometheus:
+  url: "http://localhost:9090"
+  timeout: 30
+  retry_attempts: 3
+
+training:
+  steady_state_config:
+    experiment_duration_minutes: 20      # Reduced from 45 minutes
+    sample_interval: "30s"               # Less frequent sampling  
+    stabilization_wait_seconds: 120      # Shorter wait
+
+    # Minimal replica counts for quick validation
+    replica_counts: [1, 4]              # Just 2 instead of 4
+
+    # Focus on key load levels only
+    load_levels_users: [50, 150]        # Just 2 instead of 6
+
+    # Single scenario for speed
+    test_scenarios: ["browsing"]        # Just 1 instead of 2
+
+    data_quality_checks:
+      min_data_completeness_percent: 80  # Relaxed for speed
+      max_metric_nan_percent: 10
+      max_std_dev_percent: 15
+    
+    required_metrics:
+      - "cpu_cores"
+      - "mem_bytes" 
+      - "requests_per_second"
+      - "latency_p50"
+

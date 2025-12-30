@@ -4,26 +4,15 @@
   "replica_count": 2,
   "load_users": 50,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T18:44:34.538587",
+  "collection_start": "2025-12-17T05:46:31.848313",
   "load_test": {
-    "total_requests": 200,
-    "successful_requests": 0,
-    "failed_requests": 200,
-    "success_rate": 0.0,
-    "avg_response_time": 0.825,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 6.818259298401118,
-    "start_time": "2025-10-26T18:46:05.238903",
-    "end_time": "2025-10-26T18:46:36.835263",
-    "duration_seconds": 31.59636,
-    "script_path": "jmeter_scripts/productcatalogservice_checkout_replicas_2_users_50_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        50,
+        65,
         11
       ],
       "columns": [
@@ -43,7 +32,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        52,
+        47,
         11
       ],
       "columns": [
@@ -63,7 +52,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        50,
+        65,
         1
       ],
       "columns": [
@@ -73,7 +62,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        52,
+        47,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        51,
+        46,
         10
       ],
       "columns": [
@@ -148,7 +137,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        50,
+        65,
         1
       ],
       "columns": [
@@ -158,7 +147,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        50,
+        65,
         11
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        51,
+        46,
         1
       ],
       "columns": [
@@ -188,7 +177,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        52,
+        65,
         1
       ],
       "columns": [
@@ -196,10 +185,13 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T18:46:37.033544",
+  "collection_end": "2025-12-17T05:48:01.917837",
   "data_quality": {
-    "status": "passed",
-    "warnings": [],
+    "status": "warnings",
+    "warnings": [
+      "High variability in cpu_cores: CV=48.6% (limit: 10%)",
+      "High variability in mem_bytes: CV=24.2% (limit: 10%)"
+    ],
     "checks": {
       "completeness": {
         "passed": true,
@@ -210,11 +202,11 @@
         "details": ""
       },
       "stability": {
-        "passed": true,
-        "details": ""
+        "passed": "False",
+        "details": "mem_bytes: CV=24.2% (unstable)"
       }
     }
   },
-  "status": "completed",
+  "status": "completed_with_warnings",
   "unified_csv_path": "training_data/productcatalogservice_checkout_replicas_2_users_50.csv"
 }

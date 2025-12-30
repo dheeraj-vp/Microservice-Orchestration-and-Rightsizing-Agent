@@ -1,0 +1,54 @@
+{
+  "timestamp": "20251218_103942",
+  "service_name": "productcatalogservice",
+  "scaler_type": "standard",
+  "rf_clf_metrics": {
+    "accuracy": 0.9460431654676259,
+    "precision": 0.8951612903225806,
+    "recall": 0.8671875,
+    "f1": 0.8809523809523809,
+    "roc_auc": 0.972820531542056,
+    "confusion_matrix": [
+      [
+        415,
+        13
+      ],
+      [
+        17,
+        111
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "rf_reg_metrics": null,
+  "lstm_clf_metrics": {
+    "accuracy": 0.7560483870967742,
+    "precision": 0.5716091636316338,
+    "recall": 0.7560483870967742,
+    "f1": 0.6510175549053738,
+    "roc_auc": 0.8067658402203857,
+    "confusion_matrix": [
+      [
+        375,
+        0
+      ],
+      [
+        121,
+        0
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "lstm_reg_metrics": null,
+  "prophet_metrics": {
+    "mae": 0.19571288380226154,
+    "rmse": 0.3117614378251465,
+    "r2": -0.05850031207453643,
+    "directional_accuracy": 0.554954954954955
+  },
+  "hybrid_3way_metrics": null,
+  "lstm_seq_len": 60,
+  "training_samples": 2221,
+  "test_samples": 556,
+  "model_dir": "trained_models/productcatalogservice/20251218_103942"
+}

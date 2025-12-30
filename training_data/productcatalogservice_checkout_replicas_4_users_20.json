@@ -4,26 +4,15 @@
   "replica_count": 4,
   "load_users": 20,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T18:52:41.820657",
+  "collection_start": "2025-12-17T05:52:32.253615",
   "load_test": {
-    "total_requests": 80,
-    "successful_requests": 0,
-    "failed_requests": 80,
-    "success_rate": 0.0,
-    "avg_response_time": 0.75,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 2.811160306416473,
-    "start_time": "2025-10-26T18:54:12.795410",
-    "end_time": "2025-10-26T18:54:43.448758",
-    "duration_seconds": 30.653348,
-    "script_path": "jmeter_scripts/productcatalogservice_checkout_replicas_4_users_20_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        86,
+        74,
         11
       ],
       "columns": [
@@ -43,7 +32,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        77,
         11
       ],
       "columns": [
@@ -63,7 +52,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        86,
+        74,
         1
       ],
       "columns": [
@@ -73,7 +62,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        77,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        86,
+        76,
         10
       ],
       "columns": [
@@ -148,7 +137,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        86,
+        74,
         1
       ],
       "columns": [
@@ -158,7 +147,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        86,
+        74,
         11
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        86,
+        76,
         1
       ],
       "columns": [
@@ -188,7 +177,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        77,
         1
       ],
       "columns": [
@@ -196,7 +185,7 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T18:54:43.680753",
+  "collection_end": "2025-12-17T05:54:02.325486",
   "data_quality": {
     "status": "passed",
     "warnings": [],

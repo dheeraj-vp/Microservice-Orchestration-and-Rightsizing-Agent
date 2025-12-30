@@ -1,0 +1,54 @@
+{
+  "timestamp": "20251218_105443",
+  "service_name": "shippingservice",
+  "scaler_type": "standard",
+  "rf_clf_metrics": {
+    "accuracy": 0.9577702702702703,
+    "precision": 0.976,
+    "recall": 0.8472222222222222,
+    "f1": 0.9070631970260223,
+    "roc_auc": 0.9951636904761906,
+    "confusion_matrix": [
+      [
+        445,
+        3
+      ],
+      [
+        22,
+        122
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "rf_reg_metrics": null,
+  "lstm_clf_metrics": {
+    "accuracy": 0.7387218045112782,
+    "precision": 0.672876387397064,
+    "recall": 0.7387218045112782,
+    "f1": 0.6684791498434504,
+    "roc_auc": 0.7672357496035077,
+    "confusion_matrix": [
+      [
+        381,
+        16
+      ],
+      [
+        123,
+        12
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "lstm_reg_metrics": null,
+  "prophet_metrics": {
+    "mae": 0.14595516838845166,
+    "rmse": 0.28928045732861246,
+    "r2": 0.02588847449777265,
+    "directional_accuracy": 0.47884940778341795
+  },
+  "hybrid_3way_metrics": null,
+  "lstm_seq_len": 60,
+  "training_samples": 2368,
+  "test_samples": 592,
+  "model_dir": "trained_models/shippingservice/20251218_105443"
+}

@@ -4,26 +4,15 @@
   "replica_count": 2,
   "load_users": 10,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T19:15:04.599396",
+  "collection_start": "2025-12-17T11:34:13.995606",
   "load_test": {
-    "total_requests": 40,
-    "successful_requests": 0,
-    "failed_requests": 40,
-    "success_rate": 0.0,
-    "avg_response_time": 0.95,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 1.4844503822459734,
-    "start_time": "2025-10-26T19:16:35.278231",
-    "end_time": "2025-10-26T19:17:04.430682",
-    "duration_seconds": 29.152451,
-    "script_path": "jmeter_scripts/recommendationservice_browsing_replicas_2_users_10_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        38,
+        69,
         11
       ],
       "columns": [
@@ -43,7 +32,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        40,
+        52,
         11
       ],
       "columns": [
@@ -63,7 +52,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        38,
+        69,
         1
       ],
       "columns": [
@@ -73,7 +62,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        40,
+        52,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        39,
+        51,
         10
       ],
       "columns": [
@@ -148,7 +137,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        38,
+        69,
         1
       ],
       "columns": [
@@ -158,7 +147,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        38,
+        69,
         11
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        39,
+        51,
         1
       ],
       "columns": [
@@ -188,7 +177,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        40,
+        69,
         1
       ],
       "columns": [
@@ -196,7 +185,7 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T19:17:04.796544",
+  "collection_end": "2025-12-17T11:35:44.595791",
   "data_quality": {
     "status": "passed",
     "warnings": [],

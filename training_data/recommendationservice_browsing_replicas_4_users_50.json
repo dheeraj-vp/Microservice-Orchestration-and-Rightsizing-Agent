@@ -4,26 +4,15 @@
   "replica_count": 4,
   "load_users": 50,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T19:33:16.256514",
+  "collection_start": "2025-12-17T11:47:49.131158",
   "load_test": {
-    "total_requests": 200,
-    "successful_requests": 0,
-    "failed_requests": 200,
-    "success_rate": 0.0,
-    "avg_response_time": 0.75,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 6.812453164384495,
-    "start_time": "2025-10-26T19:34:46.908223",
-    "end_time": "2025-10-26T19:35:18.499005",
-    "duration_seconds": 31.590782,
-    "script_path": "jmeter_scripts/recommendationservice_browsing_replicas_4_users_50_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        96,
+        91,
         11
       ],
       "columns": [
@@ -63,7 +52,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        96,
+        91,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        102,
+        92,
         10
       ],
       "columns": [
@@ -148,7 +137,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        96,
+        91,
         1
       ],
       "columns": [
@@ -158,7 +147,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        96,
+        91,
         11
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        102,
+        92,
         1
       ],
       "columns": [
@@ -188,7 +177,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        96,
+        94,
         1
       ],
       "columns": [
@@ -196,11 +185,12 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T19:35:18.604784",
+  "collection_end": "2025-12-17T11:49:19.709409",
   "data_quality": {
     "status": "warnings",
     "warnings": [
-      "High variability in cpu_cores: CV=32.0% (limit: 10%)"
+      "High variability in cpu_cores: CV=128.0% (limit: 10%)",
+      "High variability in mem_bytes: CV=23.9% (limit: 10%)"
     ],
     "checks": {
       "completeness": {
@@ -213,7 +203,7 @@
       },
       "stability": {
         "passed": "False",
-        "details": "cpu_cores: CV=32.0% (unstable)"
+        "details": "mem_bytes: CV=23.9% (unstable)"
       }
     }
   },

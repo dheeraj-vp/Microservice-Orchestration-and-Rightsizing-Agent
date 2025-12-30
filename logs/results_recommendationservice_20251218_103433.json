@@ -1,0 +1,54 @@
+{
+  "timestamp": "20251218_103433",
+  "service_name": "recommendationservice",
+  "scaler_type": "standard",
+  "rf_clf_metrics": {
+    "accuracy": 0.9714765100671141,
+    "precision": 0.9424460431654677,
+    "recall": 0.9357142857142857,
+    "f1": 0.9390681003584229,
+    "roc_auc": 0.9840382205513785,
+    "confusion_matrix": [
+      [
+        448,
+        8
+      ],
+      [
+        9,
+        131
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "rf_reg_metrics": null,
+  "lstm_clf_metrics": {
+    "accuracy": 0.8152985074626866,
+    "precision": 0.8020077092861594,
+    "recall": 0.8152985074626866,
+    "f1": 0.798220733861946,
+    "roc_auc": 0.8746873815839332,
+    "confusion_matrix": [
+      [
+        382,
+        24
+      ],
+      [
+        75,
+        55
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "lstm_reg_metrics": null,
+  "prophet_metrics": {
+    "mae": 0.1353181014947068,
+    "rmse": 0.27187030398875695,
+    "r2": 0.019983402764001124,
+    "directional_accuracy": 0.426890756302521
+  },
+  "hybrid_3way_metrics": null,
+  "lstm_seq_len": 60,
+  "training_samples": 2384,
+  "test_samples": 596,
+  "model_dir": "trained_models/recommendationservice/20251218_103433"
+}
