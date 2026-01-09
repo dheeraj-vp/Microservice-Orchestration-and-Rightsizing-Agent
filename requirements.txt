@@ -2,7 +2,7 @@
 kubernetes>=28.1.0
 prometheus-api-client>=0.5.3
 pandas>=2.0.0
-numpy>=1.24.0
+
 
 # ML libraries
 prophet>=1.1.4
@@ -30,6 +30,5 @@ black>=23.0.0
 flake8>=6.0.0
 mypy>=1.5.0
 
-# Optional: for advanced time series analysis
-arch>=6.2.0
+
 

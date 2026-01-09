@@ -4,26 +4,15 @@
   "replica_count": 2,
   "load_users": 30,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T14:26:55.115071",
+  "collection_start": "2025-12-17T06:36:26.655321",
   "load_test": {
-    "total_requests": 120,
-    "successful_requests": 0,
-    "failed_requests": 120,
-    "success_rate": 0.0,
-    "avg_response_time": 0.9083333333333333,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 4.1450777202072535,
-    "start_time": "2025-10-26T14:28:26.187498",
-    "end_time": "2025-10-26T14:28:58.361043",
-    "duration_seconds": 32.173545,
-    "script_path": "jmeter_scripts/currencyservice_browsing_replicas_2_users_30_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         11
       ],
       "columns": [
@@ -43,7 +32,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        48,
+        44,
         11
       ],
       "columns": [
@@ -63,7 +52,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         1
       ],
       "columns": [
@@ -73,7 +62,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        48,
+        44,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         10
       ],
       "columns": [
@@ -148,7 +137,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         1
       ],
       "columns": [
@@ -158,7 +147,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         11
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         1
       ],
       "columns": [
@@ -188,7 +177,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        48,
+        44,
         1
       ],
       "columns": [
@@ -196,12 +185,10 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T14:28:58.489575",
+  "collection_end": "2025-12-17T06:37:56.726197",
   "data_quality": {
-    "status": "warnings",
-    "warnings": [
-      "High variability in cpu_cores: CV=19.8% (limit: 10%)"
-    ],
+    "status": "passed",
+    "warnings": [],
     "checks": {
       "completeness": {
         "passed": true,
@@ -212,11 +199,11 @@
         "details": ""
       },
       "stability": {
-        "passed": "False",
-        "details": "cpu_cores: CV=19.8% (unstable)"
+        "passed": true,
+        "details": ""
       }
     }
   },
-  "status": "completed_with_warnings",
+  "status": "completed",
   "unified_csv_path": "training_data/currencyservice_browsing_replicas_2_users_30.csv"
 }

@@ -1,0 +1,8 @@
+training:
+  steady_state_config:
+    experiment_duration_minutes: 2
+    sample_interval: "30s"
+    replica_counts: [1]
+    load_levels_users: [5]
+    test_scenarios: ["browsing"]
+    stabilization_wait_seconds: 30

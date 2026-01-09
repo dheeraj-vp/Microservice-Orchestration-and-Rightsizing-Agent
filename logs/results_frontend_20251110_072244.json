@@ -1,0 +1,53 @@
+{
+  "timestamp": "2025-11-10T07:22:05.518785",
+  "service_name": "frontend",
+  "scaler_type": "standard",
+  "rf_clf_metrics": {
+    "accuracy": 0.7455138662316476,
+    "precision": 0.5735294117647058,
+    "recall": 0.23493975903614459,
+    "f1": 0.3333333333333333,
+    "roc_auc": 0.8326392819600551,
+    "confusion_matrix": [
+      [
+        418,
+        29
+      ],
+      [
+        127,
+        39
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "rf_reg_metrics": null,
+  "lstm_clf_metrics": {
+    "accuracy": 0.7112810707456979,
+    "precision": 0.6060314521454999,
+    "recall": 0.7112810707456979,
+    "f1": 0.6121733384911243,
+    "roc_auc": 0.6175102648886306,
+    "confusion_matrix": [
+      [
+        368,
+        9
+      ],
+      [
+        142,
+        4
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "lstm_reg_metrics": null,
+  "prophet_metrics": {
+    "mae": 0.23419523247222382,
+    "rmse": 0.37608484946742593,
+    "r2": 0.05469410224378579,
+    "directional_accuracy": 0.434640522875817
+  },
+  "hybrid_3way_metrics": null,
+  "lstm_seq_len": 90,
+  "training_samples": 2452,
+  "test_samples": 613
+}

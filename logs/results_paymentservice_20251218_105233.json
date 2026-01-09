@@ -1,0 +1,54 @@
+{
+  "timestamp": "20251218_105233",
+  "service_name": "paymentservice",
+  "scaler_type": "standard",
+  "rf_clf_metrics": {
+    "accuracy": 0.9042016806722689,
+    "precision": 0.95,
+    "recall": 0.40860215053763443,
+    "f1": 0.5714285714285714,
+    "roc_auc": 0.8807993831127104,
+    "confusion_matrix": [
+      [
+        500,
+        2
+      ],
+      [
+        55,
+        38
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "rf_reg_metrics": null,
+  "lstm_clf_metrics": {
+    "accuracy": 0.8448598130841122,
+    "precision": 0.7946628270586364,
+    "recall": 0.8448598130841122,
+    "f1": 0.783837188852184,
+    "roc_auc": 0.7103902335003731,
+    "confusion_matrix": [
+      [
+        449,
+        3
+      ],
+      [
+        80,
+        3
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "lstm_reg_metrics": null,
+  "prophet_metrics": {
+    "mae": 0.1031776562678242,
+    "rmse": 0.201400509474737,
+    "r2": 0.003686581156979063,
+    "directional_accuracy": 0.5942760942760943
+  },
+  "hybrid_3way_metrics": null,
+  "lstm_seq_len": 60,
+  "training_samples": 2378,
+  "test_samples": 595,
+  "model_dir": "trained_models/paymentservice/20251218_105233"
+}

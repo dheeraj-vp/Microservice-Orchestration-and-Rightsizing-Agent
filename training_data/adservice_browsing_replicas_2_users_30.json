@@ -4,26 +4,15 @@
   "replica_count": 2,
   "load_users": 30,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T13:13:57.091866",
+  "collection_start": "2025-12-16T06:30:53.421569",
   "load_test": {
-    "total_requests": 120,
-    "successful_requests": 0,
-    "failed_requests": 120,
-    "success_rate": 0.0,
-    "avg_response_time": 0.6416666666666667,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 4.145220905730768,
-    "start_time": "2025-10-26T13:15:27.687209",
-    "end_time": "2025-10-26T13:15:58.829959",
-    "duration_seconds": 31.14275,
-    "script_path": "jmeter_scripts/adservice_browsing_replicas_2_users_30_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        50,
         11
       ],
       "columns": [
@@ -43,7 +32,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        48,
+        43,
         11
       ],
       "columns": [
@@ -63,7 +52,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        50,
         1
       ],
       "columns": [
@@ -73,7 +62,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        48,
+        43,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         10
       ],
       "columns": [
@@ -148,7 +137,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        50,
         1
       ],
       "columns": [
@@ -158,7 +147,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        50,
         11
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        43,
         1
       ],
       "columns": [
@@ -188,7 +177,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        48,
+        50,
         1
       ],
       "columns": [
@@ -196,12 +185,11 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T13:15:58.891820",
+  "collection_end": "2025-12-16T06:32:23.491154",
   "data_quality": {
     "status": "warnings",
     "warnings": [
-      "High variability in cpu_cores: CV=43.1% (limit: 10%)",
-      "High variability in mem_bytes: CV=24.7% (limit: 10%)"
+      "High variability in cpu_cores: CV=49.3% (limit: 10%)"
     ],
     "checks": {
       "completeness": {
@@ -214,7 +202,7 @@
       },
       "stability": {
         "passed": "False",
-        "details": "mem_bytes: CV=24.7% (unstable)"
+        "details": "cpu_cores: CV=49.3% (unstable)"
       }
     }
   },

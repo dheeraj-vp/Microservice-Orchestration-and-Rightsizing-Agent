@@ -4,26 +4,26 @@
   "replica_count": 2,
   "load_users": 30,
   "duration_minutes": 15,
-  "collection_start": "2025-10-25T19:36:40.194466",
+  "collection_start": "2025-11-06T06:26:52.306191",
   "load_test": {
     "total_requests": 120,
     "successful_requests": 0,
     "failed_requests": 120,
     "success_rate": 0.0,
-    "avg_response_time": 0.8083333333333333,
-    "max_response_time": "10",
+    "avg_response_time": 0.49166666666666664,
+    "max_response_time": "12",
     "min_response_time": "0",
-    "throughput": 4.144218814753419,
-    "start_time": "2025-10-25T19:38:10.754106",
-    "end_time": "2025-10-25T19:38:41.918217",
-    "duration_seconds": 31.164111,
+    "throughput": 124.22360248447205,
+    "start_time": "2025-11-06T06:28:22.993666",
+    "end_time": "2025-11-06T06:28:26.299588",
+    "duration_seconds": 3.305922,
     "script_path": "jmeter_scripts/frontend_checkout_replicas_2_users_30_load.jmx"
   },
   "metrics": {
     "cpu_cores": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        56,
         11
       ],
       "columns": [
@@ -43,7 +43,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        58,
         11
       ],
       "columns": [
@@ -63,7 +63,7 @@
     "net_rx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        56,
         1
       ],
       "columns": [
@@ -73,7 +73,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        58,
         1
       ],
       "columns": [
@@ -83,7 +83,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        60,
         10
       ],
       "columns": [
@@ -121,7 +121,7 @@
     "node_cpu_util": {
       "_type": "DataFrame",
       "shape": [
-        31,
+        25,
         1
       ],
       "columns": [
@@ -131,7 +131,7 @@
     "node_mem_util": {
       "_type": "DataFrame",
       "shape": [
-        31,
+        29,
         8
       ],
       "columns": [
@@ -148,7 +148,7 @@
     "network_activity_rate": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        56,
         1
       ],
       "columns": [
@@ -158,7 +158,7 @@
     "processing_intensity": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        56,
         11
       ],
       "columns": [
@@ -178,7 +178,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        60,
         1
       ],
       "columns": [
@@ -188,7 +188,7 @@
     "resource_pressure": {
       "_type": "DataFrame",
       "shape": [
-        47,
+        58,
         1
       ],
       "columns": [
@@ -196,10 +196,12 @@
       ]
     }
   },
-  "collection_end": "2025-10-25T19:38:42.026697",
+  "collection_end": "2025-11-06T06:28:26.343363",
   "data_quality": {
-    "status": "passed",
-    "warnings": [],
+    "status": "warnings",
+    "warnings": [
+      "High variability in cpu_cores: CV=35.3% (limit: 10%)"
+    ],
     "checks": {
       "completeness": {
         "passed": true,
@@ -210,11 +212,11 @@
         "details": ""
       },
       "stability": {
-        "passed": true,
-        "details": ""
+        "passed": "False",
+        "details": "cpu_cores: CV=35.3% (unstable)"
       }
     }
   },
-  "status": "completed",
+  "status": "completed_with_warnings",
   "unified_csv_path": "training_data/frontend_checkout_replicas_2_users_30.csv"
 }

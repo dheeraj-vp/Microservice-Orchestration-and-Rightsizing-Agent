@@ -1,0 +1,2390 @@
+[
+  {
+    "timestamp": "2025-11-07T12:48:20.899010",
+    "service_name": "frontend",
+    "iteration": 0,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6408,
+      "precision": 0.2482,
+      "recall": 0.2361,
+      "f1": 0.242,
+      "roc_auc": 0.5174,
+      "confusion_matrix": [
+        [
+          346,
+          103
+        ],
+        [
+          110,
+          34
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:49:04.723113",
+    "service_name": "frontend",
+    "iteration": 1,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.597,
+      "precision": 0.2254,
+      "recall": 0.2708,
+      "f1": 0.2461,
+      "roc_auc": 0.5012,
+      "confusion_matrix": [
+        [
+          315,
+          134
+        ],
+        [
+          105,
+          39
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:49:26.380736",
+    "service_name": "frontend",
+    "iteration": 2,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8467,
+      "precision": 0.7431,
+      "recall": 0.551,
+      "f1": 0.6328,
+      "roc_auc": 0.9047,
+      "confusion_matrix": [
+        [
+          438,
+          28
+        ],
+        [
+          66,
+          81
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6644,
+      "precision": 0.191,
+      "recall": 0.1181,
+      "f1": 0.1459,
+      "roc_auc": 0.4422,
+      "confusion_matrix": [
+        [
+          377,
+          72
+        ],
+        [
+          127,
+          17
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.25,
+      "rmse": 0.3823,
+      "mse": 0.1462,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.0
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:50:05.204250",
+    "service_name": "frontend",
+    "iteration": 3,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.7232,
+      "recall": 0.551,
+      "f1": 0.6255,
+      "roc_auc": 0.9119,
+      "confusion_matrix": [
+        [
+          435,
+          31
+        ],
+        [
+          66,
+          81
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6543,
+      "precision": 0.2867,
+      "recall": 0.2847,
+      "f1": 0.2857,
+      "roc_auc": 0.5427,
+      "confusion_matrix": [
+        [
+          347,
+          102
+        ],
+        [
+          103,
+          41
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:50:45.063389",
+    "service_name": "frontend",
+    "iteration": 4,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": "sqrt",
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8499,
+      "precision": 0.7477,
+      "recall": 0.5646,
+      "f1": 0.6434,
+      "roc_auc": 0.893,
+      "confusion_matrix": [
+        [
+          438,
+          28
+        ],
+        [
+          64,
+          83
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5818,
+      "precision": 0.2374,
+      "recall": 0.3264,
+      "f1": 0.2749,
+      "roc_auc": 0.483,
+      "confusion_matrix": [
+        [
+          298,
+          151
+        ],
+        [
+          97,
+          47
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2674,
+      "rmse": 0.3955,
+      "mse": 0.1564,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 73.26
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:51:46.431752",
+    "service_name": "frontend",
+    "iteration": 5,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5548,
+      "precision": 0.217,
+      "recall": 0.3194,
+      "f1": 0.2584,
+      "roc_auc": 0.44,
+      "confusion_matrix": [
+        [
+          283,
+          166
+        ],
+        [
+          98,
+          46
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:52:16.861525",
+    "service_name": "frontend",
+    "iteration": 6,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5936,
+      "precision": 0.1988,
+      "recall": 0.2222,
+      "f1": 0.2098,
+      "roc_auc": 0.4472,
+      "confusion_matrix": [
+        [
+          320,
+          129
+        ],
+        [
+          112,
+          32
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:52:37.694060",
+    "service_name": "frontend",
+    "iteration": 7,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.7273,
+      "recall": 0.5442,
+      "f1": 0.6226,
+      "roc_auc": 0.9073,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6273,
+      "precision": 0.192,
+      "recall": 0.1667,
+      "f1": 0.1784,
+      "roc_auc": 0.4674,
+      "confusion_matrix": [
+        [
+          348,
+          101
+        ],
+        [
+          120,
+          24
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:53:25.309802",
+    "service_name": "frontend",
+    "iteration": 8,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8499,
+      "precision": 0.7523,
+      "recall": 0.5578,
+      "f1": 0.6406,
+      "roc_auc": 0.909,
+      "confusion_matrix": [
+        [
+          439,
+          27
+        ],
+        [
+          65,
+          82
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5868,
+      "precision": 0.241,
+      "recall": 0.3264,
+      "f1": 0.2773,
+      "roc_auc": 0.5085,
+      "confusion_matrix": [
+        [
+          301,
+          148
+        ],
+        [
+          97,
+          47
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2498,
+      "rmse": 0.3822,
+      "mse": 0.1461,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.02
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:54:09.077576",
+    "service_name": "frontend",
+    "iteration": 9,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 30
+    },
+    "rf_metrics": {
+      "accuracy": 0.8352,
+      "precision": 0.713,
+      "recall": 0.5238,
+      "f1": 0.6039,
+      "roc_auc": 0.8976,
+      "confusion_matrix": [
+        [
+          435,
+          31
+        ],
+        [
+          70,
+          77
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6155,
+      "precision": 0.2529,
+      "recall": 0.2986,
+      "f1": 0.2739,
+      "roc_auc": 0.5165,
+      "confusion_matrix": [
+        [
+          322,
+          127
+        ],
+        [
+          101,
+          43
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:55:08.874255",
+    "service_name": "frontend",
+    "iteration": 10,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6037,
+      "precision": 0.2308,
+      "recall": 0.2708,
+      "f1": 0.2492,
+      "roc_auc": 0.4659,
+      "confusion_matrix": [
+        [
+          319,
+          130
+        ],
+        [
+          105,
+          39
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:55:36.204726",
+    "service_name": "frontend",
+    "iteration": 11,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.7555,
+      "precision": 0.3333,
+      "recall": 0.0069,
+      "f1": 0.0136,
+      "roc_auc": 0.3935,
+      "confusion_matrix": [
+        [
+          447,
+          2
+        ],
+        [
+          143,
+          1
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:55:54.207995",
+    "service_name": "frontend",
+    "iteration": 12,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.845,
+      "precision": 0.75,
+      "recall": 0.5306,
+      "f1": 0.6215,
+      "roc_auc": 0.9077,
+      "confusion_matrix": [
+        [
+          440,
+          26
+        ],
+        [
+          69,
+          78
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6509,
+      "precision": 0.2886,
+      "recall": 0.2986,
+      "f1": 0.2935,
+      "roc_auc": 0.4911,
+      "confusion_matrix": [
+        [
+          343,
+          106
+        ],
+        [
+          101,
+          43
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2489,
+      "rmse": 0.3816,
+      "mse": 0.1456,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.11
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:56:34.628945",
+    "service_name": "frontend",
+    "iteration": 13,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8385,
+      "precision": 0.7222,
+      "recall": 0.5306,
+      "f1": 0.6118,
+      "roc_auc": 0.9094,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          69,
+          78
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.602,
+      "precision": 0.1806,
+      "recall": 0.1806,
+      "f1": 0.1806,
+      "roc_auc": 0.45,
+      "confusion_matrix": [
+        [
+          331,
+          118
+        ],
+        [
+          118,
+          26
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:57:22.458690",
+    "service_name": "frontend",
+    "iteration": 14,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": "sqrt",
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.7358,
+      "recall": 0.5306,
+      "f1": 0.6166,
+      "roc_auc": 0.8914,
+      "confusion_matrix": [
+        [
+          438,
+          28
+        ],
+        [
+          69,
+          78
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5919,
+      "precision": 0.2184,
+      "recall": 0.2639,
+      "f1": 0.239,
+      "roc_auc": 0.4668,
+      "confusion_matrix": [
+        [
+          313,
+          136
+        ],
+        [
+          106,
+          38
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2646,
+      "rmse": 0.3934,
+      "mse": 0.1548,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 73.54
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:58:29.878983",
+    "service_name": "frontend",
+    "iteration": 15,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5582,
+      "precision": 0.2342,
+      "recall": 0.3611,
+      "f1": 0.2842,
+      "roc_auc": 0.4917,
+      "confusion_matrix": [
+        [
+          279,
+          170
+        ],
+        [
+          92,
+          52
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:58:52.015016",
+    "service_name": "frontend",
+    "iteration": 16,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.7167,
+      "precision": 0.1842,
+      "recall": 0.0486,
+      "f1": 0.0769,
+      "roc_auc": 0.4293,
+      "confusion_matrix": [
+        [
+          418,
+          31
+        ],
+        [
+          137,
+          7
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:59:13.718668",
+    "service_name": "frontend",
+    "iteration": 17,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8467,
+      "precision": 0.7345,
+      "recall": 0.5646,
+      "f1": 0.6385,
+      "roc_auc": 0.9073,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          64,
+          83
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.629,
+      "precision": 0.25,
+      "recall": 0.2639,
+      "f1": 0.2568,
+      "roc_auc": 0.4966,
+      "confusion_matrix": [
+        [
+          335,
+          114
+        ],
+        [
+          106,
+          38
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T12:59:54.802344",
+    "service_name": "frontend",
+    "iteration": 18,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8385,
+      "precision": 0.7182,
+      "recall": 0.5374,
+      "f1": 0.6148,
+      "roc_auc": 0.907,
+      "confusion_matrix": [
+        [
+          435,
+          31
+        ],
+        [
+          68,
+          79
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.7504,
+      "precision": 0.25,
+      "recall": 0.0139,
+      "f1": 0.0263,
+      "roc_auc": 0.4852,
+      "confusion_matrix": [
+        [
+          443,
+          6
+        ],
+        [
+          142,
+          2
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2496,
+      "rmse": 0.382,
+      "mse": 0.146,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.04
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:00:34.649205",
+    "service_name": "frontend",
+    "iteration": 19,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": "sqrt",
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8434,
+      "precision": 0.7476,
+      "recall": 0.5238,
+      "f1": 0.616,
+      "roc_auc": 0.894,
+      "confusion_matrix": [
+        [
+          440,
+          26
+        ],
+        [
+          70,
+          77
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5666,
+      "precision": 0.1913,
+      "recall": 0.2431,
+      "f1": 0.2141,
+      "roc_auc": 0.4467,
+      "confusion_matrix": [
+        [
+          301,
+          148
+        ],
+        [
+          109,
+          35
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:01:38.993824",
+    "service_name": "frontend",
+    "iteration": 20,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5666,
+      "precision": 0.2271,
+      "recall": 0.3264,
+      "f1": 0.2678,
+      "roc_auc": 0.4558,
+      "confusion_matrix": [
+        [
+          289,
+          160
+        ],
+        [
+          97,
+          47
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:02:05.285828",
+    "service_name": "frontend",
+    "iteration": 21,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6391,
+      "precision": 0.1875,
+      "recall": 0.1458,
+      "f1": 0.1641,
+      "roc_auc": 0.4489,
+      "confusion_matrix": [
+        [
+          358,
+          91
+        ],
+        [
+          123,
+          21
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:02:27.791394",
+    "service_name": "frontend",
+    "iteration": 22,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8467,
+      "precision": 0.7387,
+      "recall": 0.5578,
+      "f1": 0.6357,
+      "roc_auc": 0.9095,
+      "confusion_matrix": [
+        [
+          437,
+          29
+        ],
+        [
+          65,
+          82
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6998,
+      "precision": 0.2976,
+      "recall": 0.1736,
+      "f1": 0.2193,
+      "roc_auc": 0.4866,
+      "confusion_matrix": [
+        [
+          390,
+          59
+        ],
+        [
+          119,
+          25
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2496,
+      "rmse": 0.3821,
+      "mse": 0.146,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.04
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:03:10.039389",
+    "service_name": "frontend",
+    "iteration": 23,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.7404,
+      "recall": 0.5238,
+      "f1": 0.6135,
+      "roc_auc": 0.9072,
+      "confusion_matrix": [
+        [
+          439,
+          27
+        ],
+        [
+          70,
+          77
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6425,
+      "precision": 0.2536,
+      "recall": 0.2431,
+      "f1": 0.2482,
+      "roc_auc": 0.4489,
+      "confusion_matrix": [
+        [
+          346,
+          103
+        ],
+        [
+          109,
+          35
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:04:01.608860",
+    "service_name": "frontend",
+    "iteration": 24,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8385,
+      "precision": 0.7308,
+      "recall": 0.517,
+      "f1": 0.6056,
+      "roc_auc": 0.8939,
+      "confusion_matrix": [
+        [
+          438,
+          28
+        ],
+        [
+          71,
+          76
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5582,
+      "precision": 0.199,
+      "recall": 0.2708,
+      "f1": 0.2294,
+      "roc_auc": 0.465,
+      "confusion_matrix": [
+        [
+          292,
+          157
+        ],
+        [
+          105,
+          39
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2689,
+      "rmse": 0.3967,
+      "mse": 0.1574,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 73.11
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:05:08.347176",
+    "service_name": "frontend",
+    "iteration": 25,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5616,
+      "precision": 0.1979,
+      "recall": 0.2639,
+      "f1": 0.2262,
+      "roc_auc": 0.454,
+      "confusion_matrix": [
+        [
+          295,
+          154
+        ],
+        [
+          106,
+          38
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:05:37.824015",
+    "service_name": "frontend",
+    "iteration": 26,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.597,
+      "precision": 0.2156,
+      "recall": 0.25,
+      "f1": 0.2315,
+      "roc_auc": 0.4403,
+      "confusion_matrix": [
+        [
+          318,
+          131
+        ],
+        [
+          108,
+          36
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:06:04.184551",
+    "service_name": "frontend",
+    "iteration": 27,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8434,
+      "precision": 0.7297,
+      "recall": 0.551,
+      "f1": 0.6279,
+      "roc_auc": 0.907,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          66,
+          81
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6442,
+      "precision": 0.2137,
+      "recall": 0.1736,
+      "f1": 0.1916,
+      "roc_auc": 0.4601,
+      "confusion_matrix": [
+        [
+          357,
+          92
+        ],
+        [
+          119,
+          25
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:06:46.105769",
+    "service_name": "frontend",
+    "iteration": 28,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.7273,
+      "recall": 0.5442,
+      "f1": 0.6226,
+      "roc_auc": 0.9067,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5919,
+      "precision": 0.2394,
+      "recall": 0.3125,
+      "f1": 0.2711,
+      "roc_auc": 0.4626,
+      "confusion_matrix": [
+        [
+          306,
+          143
+        ],
+        [
+          99,
+          45
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2472,
+      "rmse": 0.3803,
+      "mse": 0.1446,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.28
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:07:32.584565",
+    "service_name": "frontend",
+    "iteration": 29,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8336,
+      "precision": 0.7143,
+      "recall": 0.5102,
+      "f1": 0.5952,
+      "roc_auc": 0.8928,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          72,
+          75
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6105,
+      "precision": 0.2836,
+      "recall": 0.3958,
+      "f1": 0.3304,
+      "roc_auc": 0.5159,
+      "confusion_matrix": [
+        [
+          305,
+          144
+        ],
+        [
+          87,
+          57
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:08:28.632226",
+    "service_name": "frontend",
+    "iteration": 30,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6071,
+      "precision": 0.2201,
+      "recall": 0.2431,
+      "f1": 0.231,
+      "roc_auc": 0.4918,
+      "confusion_matrix": [
+        [
+          325,
+          124
+        ],
+        [
+          109,
+          35
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:08:52.480041",
+    "service_name": "frontend",
+    "iteration": 31,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5767,
+      "precision": 0.2139,
+      "recall": 0.2778,
+      "f1": 0.2417,
+      "roc_auc": 0.4848,
+      "confusion_matrix": [
+        [
+          302,
+          147
+        ],
+        [
+          104,
+          40
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:09:16.902365",
+    "service_name": "frontend",
+    "iteration": 32,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 30
+    },
+    "rf_metrics": {
+      "accuracy": 0.8467,
+      "precision": 0.7477,
+      "recall": 0.5442,
+      "f1": 0.6299,
+      "roc_auc": 0.9053,
+      "confusion_matrix": [
+        [
+          439,
+          27
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5835,
+      "precision": 0.2438,
+      "recall": 0.3403,
+      "f1": 0.2841,
+      "roc_auc": 0.4853,
+      "confusion_matrix": [
+        [
+          297,
+          152
+        ],
+        [
+          95,
+          49
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2473,
+      "rmse": 0.3804,
+      "mse": 0.1447,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.27
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:10:01.805670",
+    "service_name": "frontend",
+    "iteration": 33,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8401,
+      "precision": 0.7207,
+      "recall": 0.5442,
+      "f1": 0.6202,
+      "roc_auc": 0.9036,
+      "confusion_matrix": [
+        [
+          435,
+          31
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5953,
+      "precision": 0.2391,
+      "recall": 0.3056,
+      "f1": 0.2683,
+      "roc_auc": 0.4878,
+      "confusion_matrix": [
+        [
+          309,
+          140
+        ],
+        [
+          100,
+          44
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:10:44.280105",
+    "service_name": "frontend",
+    "iteration": 34,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8385,
+      "precision": 0.7353,
+      "recall": 0.5102,
+      "f1": 0.6024,
+      "roc_auc": 0.8919,
+      "confusion_matrix": [
+        [
+          439,
+          27
+        ],
+        [
+          72,
+          75
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6138,
+      "precision": 0.1986,
+      "recall": 0.1944,
+      "f1": 0.1965,
+      "roc_auc": 0.4772,
+      "confusion_matrix": [
+        [
+          336,
+          113
+        ],
+        [
+          116,
+          28
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.267,
+      "rmse": 0.3952,
+      "mse": 0.1562,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 73.3
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:11:46.464763",
+    "service_name": "frontend",
+    "iteration": 35,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.543,
+      "precision": 0.2227,
+      "recall": 0.3542,
+      "f1": 0.2735,
+      "roc_auc": 0.4448,
+      "confusion_matrix": [
+        [
+          271,
+          178
+        ],
+        [
+          93,
+          51
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:12:08.572330",
+    "service_name": "frontend",
+    "iteration": 36,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.5599,
+      "precision": 0.1803,
+      "recall": 0.2292,
+      "f1": 0.2018,
+      "roc_auc": 0.4343,
+      "confusion_matrix": [
+        [
+          299,
+          150
+        ],
+        [
+          111,
+          33
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:12:36.731140",
+    "service_name": "frontend",
+    "iteration": 37,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 30
+    },
+    "rf_metrics": {
+      "accuracy": 0.8515,
+      "precision": 0.75,
+      "recall": 0.5714,
+      "f1": 0.6486,
+      "roc_auc": 0.9094,
+      "confusion_matrix": [
+        [
+          438,
+          28
+        ],
+        [
+          63,
+          84
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6948,
+      "precision": 0.1509,
+      "recall": 0.0556,
+      "f1": 0.0812,
+      "roc_auc": 0.4576,
+      "confusion_matrix": [
+        [
+          404,
+          45
+        ],
+        [
+          136,
+          8
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:13:15.826780",
+    "service_name": "frontend",
+    "iteration": 38,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8434,
+      "precision": 0.7429,
+      "recall": 0.5306,
+      "f1": 0.619,
+      "roc_auc": 0.9057,
+      "confusion_matrix": [
+        [
+          439,
+          27
+        ],
+        [
+          69,
+          78
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.575,
+      "precision": 0.2188,
+      "recall": 0.2917,
+      "f1": 0.25,
+      "roc_auc": 0.4474,
+      "confusion_matrix": [
+        [
+          299,
+          150
+        ],
+        [
+          102,
+          42
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.249,
+      "rmse": 0.3816,
+      "mse": 0.1456,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.1
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:13:59.958971",
+    "service_name": "frontend",
+    "iteration": 39,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 30
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.7273,
+      "recall": 0.5442,
+      "f1": 0.6226,
+      "roc_auc": 0.8963,
+      "confusion_matrix": [
+        [
+          436,
+          30
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.688,
+      "precision": 0.2405,
+      "recall": 0.1319,
+      "f1": 0.1704,
+      "roc_auc": 0.5162,
+      "confusion_matrix": [
+        [
+          389,
+          60
+        ],
+        [
+          125,
+          19
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:14:56.229207",
+    "service_name": "frontend",
+    "iteration": 40,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6172,
+      "precision": 0.2515,
+      "recall": 0.2917,
+      "f1": 0.2701,
+      "roc_auc": 0.5136,
+      "confusion_matrix": [
+        [
+          324,
+          125
+        ],
+        [
+          102,
+          42
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.295,
+      "rmse": 0.4168,
+      "mse": 0.1737,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 70.5
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:15:29.514597",
+    "service_name": "frontend",
+    "iteration": 41,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.75,
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8842,
+      "precision": 0.8167,
+      "recall": 0.6667,
+      "f1": 0.7341,
+      "roc_auc": 0.9223,
+      "confusion_matrix": [
+        [
+          444,
+          22
+        ],
+        [
+          49,
+          98
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6071,
+      "precision": 0.2053,
+      "recall": 0.2153,
+      "f1": 0.2102,
+      "roc_auc": 0.4796,
+      "confusion_matrix": [
+        [
+          329,
+          120
+        ],
+        [
+          113,
+          31
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:16:01.079364",
+    "service_name": "frontend",
+    "iteration": 42,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.8401,
+      "precision": 0.7207,
+      "recall": 0.5442,
+      "f1": 0.6202,
+      "roc_auc": 0.9079,
+      "confusion_matrix": [
+        [
+          435,
+          31
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6543,
+      "precision": 0.1494,
+      "recall": 0.0903,
+      "f1": 0.1126,
+      "roc_auc": 0.4557,
+      "confusion_matrix": [
+        [
+          375,
+          74
+        ],
+        [
+          131,
+          13
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2497,
+      "rmse": 0.3821,
+      "mse": 0.146,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 75.03
+    },
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:16:40.452224",
+    "service_name": "frontend",
+    "iteration": 43,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": 0.5,
+      "max_depth": 20
+    },
+    "rf_metrics": {
+      "accuracy": 0.845,
+      "precision": 0.7407,
+      "recall": 0.5442,
+      "f1": 0.6275,
+      "roc_auc": 0.906,
+      "confusion_matrix": [
+        [
+          438,
+          28
+        ],
+        [
+          67,
+          80
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.7403,
+      "precision": 0.2222,
+      "recall": 0.0278,
+      "f1": 0.0494,
+      "roc_auc": 0.4549,
+      "confusion_matrix": [
+        [
+          435,
+          14
+        ],
+        [
+          140,
+          4
+        ]
+      ]
+    },
+    "prophet_metrics": null,
+    "hybrid_metrics": null
+  },
+  {
+    "timestamp": "2025-11-07T13:17:18.943856",
+    "service_name": "frontend",
+    "iteration": 44,
+    "training_samples": 2452,
+    "test_samples": 613,
+    "rf_hyperparams": {
+      "n_estimators": 200,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": "sqrt",
+      "max_depth": null
+    },
+    "rf_metrics": {
+      "accuracy": 0.8418,
+      "precision": 0.75,
+      "recall": 0.5102,
+      "f1": 0.6073,
+      "roc_auc": 0.8911,
+      "confusion_matrix": [
+        [
+          441,
+          25
+        ],
+        [
+          72,
+          75
+        ]
+      ]
+    },
+    "lstm_metrics": {
+      "accuracy": 0.6476,
+      "precision": 0.2124,
+      "recall": 0.1667,
+      "f1": 0.1868,
+      "roc_auc": 0.4535,
+      "confusion_matrix": [
+        [
+          360,
+          89
+        ],
+        [
+          120,
+          24
+        ]
+      ]
+    },
+    "prophet_metrics": {
+      "mae": 0.2651,
+      "rmse": 0.3938,
+      "mse": 0.1551,
+      "directional_accuracy": 0.5735,
+      "scaled_accuracy": 73.49
+    },
+    "hybrid_metrics": null
+  }
+]

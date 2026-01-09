@@ -1,0 +1,57 @@
+# Balanced Configuration for MOrA Data Collection
+# Balances data quality with resource constraints
+
+# Experiment Configuration
+experiment_duration_minutes: 30  # Balanced: longer than optimized, shorter than default
+replica_counts: [1, 2, 4, 6]     # Keep all replica scenarios for scaling behavior
+load_levels_users: [5, 10, 25, 50, 100, 150]  # Balanced: covers low to medium-high load
+test_scenarios: ['browsing', 'checkout']  # Keep both scenarios
+
+# Resource Limits
+max_parallel_workers: 1          # Single worker to prevent resource overload
+cpu_limit_per_worker: 2          # Maximum 2 CPU cores per worker
+memory_limit_per_worker: 2       # Maximum 2GB RAM per worker
+
+# Load Generation Optimization
+jmeter_thread_ramp_up: 30        # Gradual ramp-up over 30 seconds
+jmeter_thread_ramp_down: 30      # Gradual ramp-down over 30 seconds
+jmeter_think_time: 2              # 2 seconds between requests
+
+# Metrics Collection Optimization
+metrics_collection_interval: 20   # Balanced: more frequent than optimized
+prometheus_query_timeout: 10      # 10 second timeout for Prometheus queries
+max_retries: 3                    # Maximum 3 retries for failed operations
+
+# Data Storage Optimization
+save_interval_minutes: 5          # Save data every 5 minutes
+compress_data: true               # Compress stored data to save space
+cleanup_temp_files: true          # Clean up temporary files immediately
+
+# System Resource Monitoring
+monitor_system_resources: true    # Monitor CPU/Memory usage
+pause_if_high_usage: true         # Pause if system usage > 80%
+high_usage_threshold: 80          # Threshold for pausing (CPU or Memory %)
+
+# Data Quality Controls
+data_quality_checks:
+  min_data_completeness_percent: 85  # At least 85% of samples collected
+  max_metric_nan_percent: 10          # Less than 10% NaN values per metric
+  max_std_dev_percent: 15             # Stability check (std dev < 15% of mean)
+
+# Required Metrics (prioritize working metrics)
+required_metrics:
+  - "cpu_cores"
+  - "mem_bytes" 
+  - "pod_restarts"
+  - "replica_count"
+  - "node_cpu_util"
+  - "node_mem_util"
+  # Optional metrics (will be collected if available)
+  - "net_rx_bytes"
+  - "net_tx_bytes"
+  - "throttled_seconds"
+  - "requests_per_second"
+  - "latency_p50"
+  - "latency_p95"
+  - "latency_p99"
+  - "error_rate"

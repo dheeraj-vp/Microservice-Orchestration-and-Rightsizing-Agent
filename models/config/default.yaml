@@ -1,0 +1,104 @@
+# MOrA Default Configuration
+
+# Kubernetes configuration
+kubernetes:
+  namespace: "hipster-shop"
+  context: "minikube"
+
+# Prometheus configuration
+prometheus:
+  url: "http://localhost:9090"  # Updated to match port-forward from setup script
+  timeout: 30
+  retry_attempts: 3
+
+# Grafana configuration
+grafana:
+  url: "http://localhost:4000"  # Port-forward access to Grafana
+  admin_user: "admin"
+  timeout: 30
+
+# Statistical strategy defaults
+statistical:
+  cpu_percentile: 95
+  memory_buffer_percentage: 15
+
+# Predictive strategy defaults
+predictive:
+  forecast_horizon_days: 7
+  confidence_interval: 0.95
+  seasonality_modes: ["daily", "weekly"]
+
+# Global policy enforcement
+policies:
+  cluster_resource_cap_percentage: 80
+  service_priorities:
+    - checkoutservice
+    - frontend
+    - cartservice
+    - productcatalogservice
+    - recommendationservice
+
+# Phase 2: Training data collection - CLEAN STEADY-STATE EXPERIMENTS
+training:
+  steady_state_config:
+    experiment_duration_minutes: 45      # Longer for better stabilization
+    sample_interval: "15s"               # Higher frequency sampling  
+    stabilization_wait_seconds: 180      # Longer wait after scaling
+
+    # Expanded but manageable replica counts
+    replica_counts: [1, 2, 4, 6]        # Good spread for learning scaling behavior
+
+    # More granular load levels, focused on critical range
+    load_levels_users: [10, 50, 100, 150, 200, 250] # Captures more detail
+
+    # Focus on high-impact scenarios initially
+    test_scenarios: ["browsing", "checkout"] # Add specific JMeter script creation for these
+
+    # Add basic quality controls for individual experiments
+    data_quality_checks:
+      min_data_completeness_percent: 90  # At least 90% of samples collected
+      max_metric_nan_percent: 5          # Less than 5% NaN values per metric
+      max_std_dev_percent: 10            # Last 5 minutes stability check (std dev < 10% of mean)
+    
+    required_metrics:
+      - "cpu_cores"
+      - "mem_bytes" 
+      - "net_rx_bytes"
+      - "net_tx_bytes"
+      - "requests_per_second"
+      - "latency_p50"
+      - "latency_p95"
+      - "latency_p99"
+      - "error_rate"
+      - "throttled_seconds"
+      - "pod_restarts"
+      - "replica_count"
+      - "node_cpu_util"
+      - "node_mem_util"
+
+# Phase 4: Evaluation configuration - DYNAMIC LOAD TESTING
+evaluation:
+  collection_duration_minutes: 120
+  sample_interval: "30s"
+  dynamic_load_scenarios:
+    - name: "idle"
+      users: 0
+      duration_minutes: 15
+    - name: "low"
+      users: 10
+      duration_minutes: 30
+    - name: "medium"
+      users: 50
+      duration_minutes: 30
+    - name: "high"
+      users: 100
+      duration_minutes: 30
+    - name: "peak"
+      users: 200
+      duration_minutes: 15
+
+# Output configuration
+output:
+  default_format: "table"
+  include_confidence_intervals: true
+  include_metadata: true

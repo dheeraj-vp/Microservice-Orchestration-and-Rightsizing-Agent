@@ -4,20 +4,9 @@
   "replica_count": 1,
   "load_users": 20,
   "duration_minutes": 15,
-  "collection_start": "2025-10-26T17:15:48.364424",
+  "collection_start": "2025-12-17T08:05:14.854943",
   "load_test": {
-    "total_requests": 80,
-    "successful_requests": 0,
-    "failed_requests": 80,
-    "success_rate": 0.0,
-    "avg_response_time": 0.9,
-    "max_response_time": "10",
-    "min_response_time": "0",
-    "throughput": 2.8110615271091746,
-    "start_time": "2025-10-26T17:17:18.903929",
-    "end_time": "2025-10-26T17:17:49.517766",
-    "duration_seconds": 30.613837,
-    "script_path": "jmeter_scripts/paymentservice_checkout_replicas_1_users_20_load.jmx"
+    "error": "JMeter is required but not installed"
   },
   "metrics": {
     "cpu_cores": {
@@ -43,7 +32,7 @@
     "mem_bytes": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        91,
         11
       ],
       "columns": [
@@ -73,7 +62,7 @@
     "net_tx_bytes": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        91,
         1
       ],
       "columns": [
@@ -83,7 +72,7 @@
     "pod_restarts": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        89,
         10
       ],
       "columns": [
@@ -178,7 +167,7 @@
     "service_stability": {
       "_type": "DataFrame",
       "shape": [
-        88,
+        89,
         1
       ],
       "columns": [
@@ -196,12 +185,11 @@
       ]
     }
   },
-  "collection_end": "2025-10-26T17:17:49.641634",
+  "collection_end": "2025-12-17T08:06:44.917244",
   "data_quality": {
     "status": "warnings",
     "warnings": [
-      "High variability in cpu_cores: CV=39.5% (limit: 10%)",
-      "High variability in mem_bytes: CV=36.4% (limit: 10%)"
+      "High variability in cpu_cores: CV=27.5% (limit: 10%)"
     ],
     "checks": {
       "completeness": {
@@ -214,7 +202,7 @@
       },
       "stability": {
         "passed": "False",
-        "details": "mem_bytes: CV=36.4% (unstable)"
+        "details": "cpu_cores: CV=27.5% (unstable)"
       }
     }
   },
