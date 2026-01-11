@@ -189,21 +189,55 @@ class LightweightLSTMProphetPipeline:
         """Create time-based features"""
         if 'timestamp' in data.columns:
             # Handle relative time indices (t_0, t_1, etc.) from our data collection
-            if data['timestamp'].dtype == 'object' and data['timestamp'].str.startswith('t_').all():
-                # Convert t_0, t_1, etc. to numeric time indices
-                data['time_index'] = data['timestamp'].str.extract(r't_(\d+)').astype(int)
-                data['hour'] = data['time_index'] % 24  # Simulate hourly pattern
-                data['day_of_week'] = (data['time_index'] // 24) % 7  # Simulate weekly pattern
-                data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
-            else:
-                # Handle actual datetime timestamps
-                try:
-                    data['timestamp'] = pd.to_datetime(data['timestamp'])
-                    data['hour'] = data['timestamp'].dt.hour
-                    data['day_of_week'] = data['timestamp'].dt.dayofweek
+            # Check if timestamps are strings and most start with 't_'
+            if data['timestamp'].dtype == 'object':
+                # Check if timestamps match the pattern (handle NaN values)
+                timestamp_str = data['timestamp'].astype(str)
+                t_pattern_mask = timestamp_str.str.startswith('t_', na=False)
+                
+                if t_pattern_mask.sum() > len(data) * 0.8:  # At least 80% match pattern
+                    # Convert t_0, t_1, etc. to numeric time indices
+                    # Extract numeric part, fill NaN with 0, then convert to int
+                    extracted = timestamp_str.str.extract(r't_(\d+)')
+                    # Fill NaN values with 0 (or use progressive index)
+                    extracted = extracted.fillna(0)
+                    # Get the first column (or use iloc for safety)
+                    extracted_col = extracted.iloc[:, 0] if extracted.shape[1] > 0 else pd.Series([0] * len(data))
+                    # Convert to numeric, handling any remaining issues
+                    data['time_index'] = pd.to_numeric(extracted_col, errors='coerce').fillna(0).astype(int)
+                    data['hour'] = data['time_index'] % 24  # Simulate hourly pattern
+                    data['day_of_week'] = (data['time_index'] // 24) % 7  # Simulate weekly pattern
                     data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
-                except Exception as e:
-                    logger.warning(f"Could not parse timestamps: {e}. Skipping time features.")
+                else:
+                    # Handle actual datetime timestamps
+                    try:
+                        data['timestamp'] = pd.to_datetime(data['timestamp'], errors='coerce')
+                        # Fill any NaT values with a default timestamp
+                        data['timestamp'] = data['timestamp'].fillna(pd.Timestamp.now())
+                        data['hour'] = data['timestamp'].dt.hour
+                        data['day_of_week'] = data['timestamp'].dt.dayofweek
+                        data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
+                        # Create time_index from datetime
+                        data['time_index'] = (data['timestamp'] - data['timestamp'].min()).dt.total_seconds() / 60
+                    except Exception as e:
+                        logger.warning(f"Could not parse timestamps: {e}. Skipping time features.")
+                        # Fallback: create simple sequential index
+                        data['time_index'] = range(len(data))
+                        data['hour'] = data['time_index'] % 24
+                        data['day_of_week'] = (data['time_index'] // 24) % 7
+                        data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
+            else:
+                # If timestamp is already numeric or datetime, create sequential index
+                data['time_index'] = range(len(data))
+                data['hour'] = data['time_index'] % 24
+                data['day_of_week'] = (data['time_index'] // 24) % 7
+                data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
+        else:
+            # No timestamp column, create sequential index
+            data['time_index'] = range(len(data))
+            data['hour'] = data['time_index'] % 24
+            data['day_of_week'] = (data['time_index'] // 24) % 7
+            data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
         return data
     
     def create_prophet_models(self, service_name: str, df: pd.DataFrame, targets: Dict[str, pd.Series]) -> Dict[str, Any]:

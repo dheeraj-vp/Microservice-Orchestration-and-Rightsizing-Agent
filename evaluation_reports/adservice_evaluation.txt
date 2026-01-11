@@ -6,28 +6,28 @@
 ----------------------------------------
 Service: adservice
 Pipeline Type: lightweight_lstm_prophet
-Trained At: 2025-11-03T22:56:34.092429
-Evaluated At: 2025-11-03T23:12:39.080201
+Trained At: 2025-11-14T10:34:29.278528
+Evaluated At: 2026-01-11T15:02:35.793736
 Test Samples: 0
 
 📊 PERFORMANCE METRICS
 ----------------------------------------
 cpu_target:
-  MSE: 0.000002
-  MAE: 0.001216
-  R²: 0.015232
+  MSE: 0.000003
+  MAE: 0.001231
+  R²: -0.001775
   Confidence: 0.90
 
 memory_target:
-  MSE: 10430716980580042.000000
-  MAE: 100563115.440610
-  R²: -31.823593
+  MSE: 10430651224817088.000000
+  MAE: 100562802.858808
+  R²: -31.823386
   Confidence: 0.50
 
 replica_target:
-  MSE: 0.222806
-  MAE: 0.290888
-  R²: 0.656353
+  MSE: 0.206563
+  MAE: 0.293076
+  R²: 0.681405
   Confidence: 0.90
 
 🏭 INDUSTRY COMPLIANCE
