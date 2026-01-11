@@ -1,0 +1,73 @@
+{
+  "timestamp": "2025-11-10T05:23:56.460569",
+  "service_name": "frontend",
+  "training_samples": 2452,
+  "test_samples": 613,
+  "lstm_seq_len": 20,
+  "rf_hyperparams": {
+    "n_estimators": 100,
+    "min_samples_split": 5,
+    "max_features": 0.5,
+    "max_depth": 10,
+    "class_weight": "balanced"
+  },
+  "rf_metrics": {
+    "accuracy": 0.7471451876019576,
+    "precision": 0.5219123505976095,
+    "recall": 0.7891566265060241,
+    "f1": 0.6282973621103117,
+    "roc_auc": 0.793597207622436,
+    "optimal_threshold": 0.41931842673666203,
+    "confusion_matrix": [
+      [
+        327,
+        120
+      ],
+      [
+        35,
+        131
+      ]
+    ]
+  },
+  "lstm_clf_metrics": {
+    "accuracy": 0.6053962900505903,
+    "precision": 0.384375,
+    "recall": 0.76875,
+    "f1": 0.5125,
+    "roc_auc": 0.6975606235565821,
+    "optimal_threshold": 0.4032924771308899,
+    "confusion_matrix": [
+      [
+        236,
+        197
+      ],
+      [
+        37,
+        123
+      ]
+    ]
+  },
+  "lstm_reg_metrics": {
+    "mae": 0.2293673525919594,
+    "rmse": 0.3860222185843063,
+    "mse": 0.14901315324074996,
+    "r2": 0.006598308879036563,
+    "directional_accuracy": 0.48986486486486486
+  },
+  "prophet_metrics": {
+    "mae": 0.2643014108076258,
+    "rmse": 0.39794103786561236,
+    "mse": 0.15835706961756071,
+    "r2": -0.05837152657735545,
+    "directional_accuracy": 0.696078431372549
+  },
+  "hybrid_metrics": {
+    "mae_hybrid": 0.24831081046851416,
+    "rmse_hybrid": 0.3943742127381566,
+    "r2_hybrid": -0.03685328848216152,
+    "prophet_weight": 0.48270692220000677,
+    "lstm_weight": 0.5172930777999932,
+    "improvement_vs_prophet": 10.888365925303772,
+    "improvement_vs_lstm": -8.259003586379993
+  }
+}

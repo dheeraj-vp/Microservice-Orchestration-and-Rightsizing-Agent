@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-11-10T04:37:01.389348",
+  "service_name": "frontend",
+  "training_samples": 2452,
+  "test_samples": 613,
+  "rf_hyperparams": {
+    "n_estimators": 100,
+    "min_samples_split": 2,
+    "min_samples_leaf": 2,
+    "max_features": 0.5,
+    "max_depth": 10,
+    "class_weight": "balanced"
+  },
+  "rf_metrics": {
+    "accuracy": 0.7488,
+    "precision": 0.5236,
+    "recall": 0.8012,
+    "f1": 0.6333,
+    "roc_auc": 0.8011,
+    "optimal_threshold": 0.4522,
+    "confusion_matrix": [
+      [
+        326,
+        121
+      ],
+      [
+        33,
+        133
+      ]
+    ]
+  },
+  "lstm_metrics": {
+    "accuracy": 0.5885,
+    "precision": 0.3786,
+    "recall": 0.8187,
+    "f1": 0.5178,
+    "roc_auc": 0.6786,
+    "optimal_threshold": 

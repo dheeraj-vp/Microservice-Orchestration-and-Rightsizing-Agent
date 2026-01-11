@@ -39,18 +39,18 @@ Status: ✅ GOOD
 Performance Metrics:
   cpu_target:
     MSE: 0.000000
-    MAE: 0.000119
-    R²: -0.011926
+    MAE: 0.000137
+    R²: -0.327733
     Confidence: 0.90
   memory_target:
-    MSE: 445758629854888.812500
-    MAE: 18436673.812579
-    R²: -3.211284
+    MSE: 412300779576137.312500
+    MAE: 17581496.129602
+    R²: -2.995390
     Confidence: 0.50
   replica_target:
-    MSE: 0.176417
-    MAE: 0.249044
-    R²: 0.662143
+    MSE: 0.151890
+    MAE: 0.213226
+    R²: 0.690673
     Confidence: 0.90
 
 Industry Compliance:
@@ -156,18 +156,18 @@ Status: ✅ GOOD
 Performance Metrics:
   cpu_target:
     MSE: 0.000003
-    MAE: 0.001224
-    R²: 0.000107
+    MAE: 0.001231
+    R²: -0.001775
     Confidence: 0.90
   memory_target:
-    MSE: 10430522298612800.000000
-    MAE: 100562189.982040
-    R²: -31.822980
+    MSE: 10430651224817088.000000
+    MAE: 100562802.858808
+    R²: -31.823386
     Confidence: 0.50
   replica_target:
-    MSE: 0.217571
-    MAE: 0.287261
-    R²: 0.664427
+    MSE: 0.206563
+    MAE: 0.293076
+    R²: 0.681405
     Confidence: 0.90
 
 Industry Compliance:

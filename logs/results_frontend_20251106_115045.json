@@ -1,0 +1,55 @@
+{
+  "timestamp": "2025-11-06T11:50:01.022175",
+  "service_name": "frontend",
+  "training_samples": 2452,
+  "test_samples": 613,
+  "rf_hyperparams": {
+    "n_estimators": 200,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "max_features": 0.75,
+    "max_depth": null
+  },
+  "rf_metrics": {
+    "accuracy": 0.8858,
+    "precision": 0.8065,
+    "recall": 0.6849,
+    "f1": 0.7407,
+    "roc_auc": 0.9245,
+    "confusion_matrix": [
+      [
+        443,
+        24
+      ],
+      [
+        46,
+        100
+      ]
+    ]
+  },
+  "lstm_metrics": {
+    "accuracy": 0.7605,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.4523,
+    "confusion_matrix": [
+      [
+        451,
+        0
+      ],
+      [
+        142,
+        0
+      ]
+    ]
+  },
+  "prophet_metrics": {
+    "mae": 0.232,
+    "rmse": 0.367,
+    "mse": 0.1347,
+    "directional_accuracy": 0.5392,
+    "scaled_accuracy": 76.8
+  },
+  "hybrid_metrics": null
+}

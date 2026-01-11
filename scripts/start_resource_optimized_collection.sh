@@ -46,7 +46,7 @@ echo "This will run in the background and save data immediately after each exper
 echo ""
 
 # Start the data collection process
-nohup python3 -m src.mora.cli.main train parallel-experiments \
+nohup python3 -m src.mora.cli.main train collect-data-parallel \
     --services "frontend,checkoutservice" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1 \
@@ -65,9 +65,9 @@ echo "Timestamp: $(date)"
 echo ""
 
 # Check if process is running
-if pgrep -f "parallel-experiments" > /dev/null; then
+if pgrep -f "collect-data-parallel" > /dev/null; then
     echo "✅ Data collection process is RUNNING"
-    echo "   PID: $(pgrep -f 'parallel-experiments')"
+    echo "   PID: $(pgrep -f 'collect-data-parallel')"
 else
     echo "❌ Data collection process is NOT RUNNING"
 fi
@@ -100,7 +100,7 @@ chmod +x monitor_collection.sh
 echo "📋 MONITORING COMMANDS:"
 echo "  • Check status: ./monitor_collection.sh"
 echo "  • View logs: tail -f data_collection.log"
-echo "  • Stop collection: pkill -f parallel-experiments"
+echo "  • Stop collection: pkill -f collect-data-parallel"
 echo ""
 
 echo "🎯 EXPECTED TIMELINE:"

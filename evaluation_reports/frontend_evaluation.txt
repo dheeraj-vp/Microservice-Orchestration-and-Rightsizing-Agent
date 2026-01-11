@@ -6,28 +6,28 @@
 ----------------------------------------
 Service: frontend
 Pipeline Type: lightweight_lstm_prophet
-Trained At: 2025-10-27T22:02:11.215721
-Evaluated At: 2025-10-27T22:35:53.571152
+Trained At: 2025-11-05T08:54:21.155723
+Evaluated At: 2026-01-11T15:02:34.955490
 Test Samples: 0
 
 📊 PERFORMANCE METRICS
 ----------------------------------------
 cpu_target:
   MSE: 0.000000
-  MAE: 0.000119
-  R²: -0.011926
+  MAE: 0.000137
+  R²: -0.327733
   Confidence: 0.90
 
 memory_target:
-  MSE: 445758629854888.812500
-  MAE: 18436673.812579
-  R²: -3.211284
+  MSE: 412300779576137.312500
+  MAE: 17581496.129602
+  R²: -2.995390
   Confidence: 0.50
 
 replica_target:
-  MSE: 0.176417
-  MAE: 0.249044
-  R²: 0.662143
+  MSE: 0.151890
+  MAE: 0.213226
+  R²: 0.690673
   Confidence: 0.90
 
 🏭 INDUSTRY COMPLIANCE

@@ -7,7 +7,7 @@
 Service: checkoutservice
 Pipeline Type: lstm_prophet
 Trained At: 2025-10-26T12:03:01.672056
-Evaluated At: 2025-10-27T19:45:07.262645
+Evaluated At: 2026-01-11T15:02:35.310824
 Test Samples: 0
 
 📊 PERFORMANCE METRICS

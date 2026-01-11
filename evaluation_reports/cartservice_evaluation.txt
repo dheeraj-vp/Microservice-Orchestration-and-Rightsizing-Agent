@@ -7,7 +7,7 @@
 Service: cartservice
 Pipeline Type: lightweight_lstm_prophet
 Trained At: 2025-10-27T14:24:28.722969
-Evaluated At: 2025-10-27T19:45:07.466857
+Evaluated At: 2026-01-11T15:02:35.503567
 Test Samples: 0
 
 📊 PERFORMANCE METRICS

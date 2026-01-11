@@ -23,9 +23,9 @@ python3 -m src.mora.cli.main [COMMAND] [OPTIONS]
 
 ##### 1. Data Collection Commands
 
-###### `train parallel-experiments`
+###### `train collect-data-parallel`
 ```bash
-python3 -m src.mora.cli.main train parallel-experiments [OPTIONS]
+python3 -m src.mora.cli.main train collect-data-parallel [OPTIONS]
 ```
 
 **Description**: Collect training data for multiple services in parallel
@@ -39,13 +39,13 @@ python3 -m src.mora.cli.main train parallel-experiments [OPTIONS]
 **Examples**:
 ```bash
 # Collect data for multiple services
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --services "frontend,cartservice,checkoutservice" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
 
 # Collect data for all remaining services
-python3 -m src.mora.cli.main train parallel-experiments \
+python3 -m src.mora.cli.main train collect-data-parallel \
     --services "adservice,currencyservice,emailservice,paymentservice,productcatalogservice,recommendationservice,shippingservice" \
     --config-file config/resource-optimized.yaml \
     --max-workers 1
@@ -67,9 +67,9 @@ python3 -m src.mora.cli.main train parallel-experiments \
 }
 ```
 
-###### `train isolated-experiment`
+###### `train collect-data`
 ```bash
-python3 -m src.mora.cli.main train isolated-experiment [OPTIONS]
+python3 -m src.mora.cli.main train collect-data [OPTIONS]
 ```
 
 **Description**: Collect training data for a single service
@@ -82,7 +82,7 @@ python3 -m src.mora.cli.main train isolated-experiment [OPTIONS]
 **Examples**:
 ```bash
 # Collect data for frontend service
-python3 -m src.mora.cli.main train isolated-experiment \
+python3 -m src.mora.cli.main train collect-data \
     --service "frontend" \
     --config-file config/resource-optimized.yaml
 ```

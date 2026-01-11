@@ -1,0 +1,41 @@
+# Custom high-spec configuration for MOrA Data Collection
+
+training:
+  steady_state_config:
+    experiment_duration_minutes: 10  # Longer experiments for detailed data
+    replica_counts: [ 2, 4, 8]  # Extended replica counts for scaling behavior
+    load_levels_users: [5, 10, 25, 50, 100, 150, 200]  # Covers loads from low to high
+    test_scenarios: ['browsing', 'checkout']  # Add more realistic test scenarios
+
+# Resource Limits - increased for high-spec machine
+max_parallel_workers: 4           # Run 4 parallel workers fully utilizing multi-core
+cpu_limit_per_worker: 8           # Allocate up to 8 CPU cores per worker
+memory_limit_per_worker: 16       # Allocate up to 16GB RAM per worker
+
+# Load Generation Optimization
+jmeter_thread_ramp_up: 20         # Moderate ramp-up time for load stability
+jmeter_thread_ramp_down: 20       # Moderate ramp-down time
+jmeter_think_time: 1              # 1 second think time for faster throughput
+
+# Metrics Collection Optimization
+metrics_collection_interval: 15   # More frequent metric collection for high granularity
+prometheus_query_timeout: 15      # Slightly longer timeout for large datasets
+max_retries: 5                   # More retries for network resilience
+
+# Data Storage Optimization
+save_interval_minutes: 2          # Save data every 2 minutes to minimize data loss risk
+compress_data: true               # Compress stored data by default
+cleanup_temp_files: true          # Clean up temp files aggressively
+
+# System Resource Monitoring
+monitor_system_resources: true
+pause_if_high_usage: true
+high_usage_threshold: 90          # Higher threshold reflecting robust hardware
+
+# Data Quality Controls
+data_quality_checks:
+  min_data_completeness_percent: 90
+  max_metric_nan_percent: 5
+  max_std_dev_percent: 10
+
+

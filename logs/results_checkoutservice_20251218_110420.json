@@ -1,0 +1,54 @@
+{
+  "timestamp": "20251218_110420",
+  "service_name": "checkoutservice",
+  "scaler_type": "standard",
+  "rf_clf_metrics": {
+    "accuracy": 0.8192371475953566,
+    "precision": 0.972972972972973,
+    "recall": 0.25,
+    "f1": 0.39779005524861877,
+    "roc_auc": 0.9534767610748003,
+    "confusion_matrix": [
+      [
+        458,
+        1
+      ],
+      [
+        108,
+        36
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "rf_reg_metrics": null,
+  "lstm_clf_metrics": {
+    "accuracy": 0.7403314917127072,
+    "precision": 0.5552486187845304,
+    "recall": 0.7403314917127072,
+    "f1": 0.6345698500394633,
+    "roc_auc": 0.7033279656468062,
+    "confusion_matrix": [
+      [
+        402,
+        3
+      ],
+      [
+        138,
+        0
+      ]
+    ],
+    "optimal_threshold": 0.7
+  },
+  "lstm_reg_metrics": null,
+  "prophet_metrics": {
+    "mae": 0.12843655246670266,
+    "rmse": 0.25939583615672707,
+    "r2": 0.044477045229478596,
+    "directional_accuracy": 0.45016611295681064
+  },
+  "hybrid_3way_metrics": null,
+  "lstm_seq_len": 60,
+  "training_samples": 2412,
+  "test_samples": 603,
+  "model_dir": "trained_models/checkoutservice/20251218_110420"
+}

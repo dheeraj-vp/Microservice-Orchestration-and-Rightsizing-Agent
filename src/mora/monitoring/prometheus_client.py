@@ -253,8 +253,8 @@ class PrometheusClient:
         
         try:
             # Get current values (instant query)
-            cpu_request = self.client.query(query_cpu.strip())
-            memory_request = self.client.query(query_memory.strip())
+            cpu_request = self.client.custom_query(query=query_cpu.strip())
+            memory_request = self.client.custom_query(query=query_memory.strip())
             
             requests = {
                 'cpu': [],
@@ -263,19 +263,37 @@ class PrometheusClient:
             
             if cpu_request:
                 for result in cpu_request:
-                    requests['cpu'].append({
-                        'pod': result.metric.get('pod', ''),
-                        'container': result.metric.get('container', ''),
-                        'value': float(result.value[1])
-                    })
+                    # Handle both dict and object formats
+                    if isinstance(result, dict):
+                        metric = result.get('metric', {})
+                        value = result.get('value', [None, '0'])
+                    else:
+                        metric = getattr(result, 'metric', {})
+                        value = getattr(result, 'value', [None, '0'])
+                    
+                    if isinstance(metric, dict):
+                        requests['cpu'].append({
+                            'pod': metric.get('pod', ''),
+                            'container': metric.get('container', ''),
+                            'value': float(value[1]) if len(value) > 1 else 0.0
+                        })
             
             if memory_request:
                 for result in memory_request:
-                    requests['memory'].append({
-                        'pod': result.metric.get('pod', ''),
-                        'container': result.metric.get('container', ''),
-                        'value': float(result.value[1])
-                    })
+                    # Handle both dict and object formats
+                    if isinstance(result, dict):
+                        metric = result.get('metric', {})
+                        value = result.get('value', [None, '0'])
+                    else:
+                        metric = getattr(result, 'metric', {})
+                        value = getattr(result, 'value', [None, '0'])
+                    
+                    if isinstance(metric, dict):
+                        requests['memory'].append({
+                            'pod': metric.get('pod', ''),
+                            'container': metric.get('container', ''),
+                            'value': float(value[1]) if len(value) > 1 else 0.0
+                        })
             
             return requests
             
@@ -355,15 +373,25 @@ class PrometheusClient:
             List of query results
         """
         try:
-            result = self.client.query(query)
+            result = self.client.custom_query(query=query)
             data = []
             
             if result:
                 for item in result:
+                    # Handle both dict and object formats from prometheus_api_client
+                    if isinstance(item, dict):
+                        metric = item.get('metric', {})
+                        value = item.get('value', [None, '0'])
+                        timestamp = item.get('timestamp')
+                    else:
+                        metric = getattr(item, 'metric', {})
+                        value = getattr(item, 'value', [None, '0'])
+                        timestamp = getattr(item, 'timestamp', None)
+                    
                     data.append({
-                        'metric': dict(item.metric),
-                        'value': item.value,
-                        'timestamp': item.timestamp
+                        'metric': dict(metric) if not isinstance(metric, dict) else metric,
+                        'value': value,
+                        'timestamp': timestamp
                     })
             
             return data

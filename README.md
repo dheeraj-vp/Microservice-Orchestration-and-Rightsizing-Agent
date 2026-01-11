@@ -223,8 +223,8 @@ python3 evaluate_models/industry_standards_analysis.py
 ### CLI Commands
 ```bash
 # Data Collection
-python3 -m src.mora.cli.main train parallel-experiments [OPTIONS]
-python3 -m src.mora.cli.main train isolated-experiment [OPTIONS]
+python3 -m src.mora.cli.main train collect-data-parallel [OPTIONS]
+python3 -m src.mora.cli.main train collect-data [OPTIONS]
 
 # Status and Monitoring
 python3 -m src.mora.cli.main status [OPTIONS]
