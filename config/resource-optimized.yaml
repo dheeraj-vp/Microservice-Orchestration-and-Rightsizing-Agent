@@ -1,5 +1,3 @@
-# Resource-Optimized Configuration for MOrA Data Collection
-# Designed to prevent system overload while maintaining data quality
 
 training:
   steady_state_config:

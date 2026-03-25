@@ -1,0 +1,167 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "hipster-shop-auto",
+    "title": "Hipster Shop - Auto Metrics Dashboard",
+    "tags": ["hipster-shop", "auto", "prometheus"],
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "CPU Usage by Pod",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "avg(rate(container_cpu_usage_seconds_total{namespace=\"hipster-shop\", container!=\"POD\", container!=\"\"}[5m])) by (pod)",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "palette-classic"}
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Memory Usage by Pod",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "avg(container_memory_working_set_bytes{namespace=\"hipster-shop\", container!=\"POD\", container!=\"\"}) by (pod)",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "color": {"mode": "palette-classic"}
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Network I/O",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(container_network_receive_bytes_total{namespace=\"hipster-shop\"}[5m])",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "RX {{pod}}",
+            "refId": "A"
+          },
+          {
+            "expr": "rate(container_network_transmit_bytes_total{namespace=\"hipster-shop\"}[5m])",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "TX {{pod}}",
+            "refId": "B"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
+        "fieldConfig": {
+          "defaults": {
+            "unit": "binBps",
+            "color": {"mode": "palette-classic"}
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Pod Status",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "kube_pod_status_phase{namespace=\"hipster-shop\"}",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 6, "w": 8, "x": 0, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "thresholds"}
+          }
+        }
+      },
+      {
+        "id": 5,
+        "title": "Pod Replicas",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "kube_deployment_status_replicas{namespace=\"hipster-shop\"}",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "{{deployment}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 6, "w": 8, "x": 8, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "thresholds"}
+          }
+        }
+      },
+      {
+        "id": 6,
+        "title": "Container Restarts",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "kube_pod_container_status_restarts_total{namespace=\"hipster-shop\"}",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 6, "w": 8, "x": 16, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "thresholds"}
+          }
+        }
+      }
+    ],
+    "version": 1,
+    "schemaVersion": 38
+  },
+  "overwrite": true
+}
+

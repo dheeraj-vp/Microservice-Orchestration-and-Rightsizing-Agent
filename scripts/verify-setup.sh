@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# -----------------------------------------------------------------------------
-# Verification script for MOrA Phase 1 setup
-# Checks if all components are running properly
-# -----------------------------------------------------------------------------
+
+
+
+
 
 PROM_NAMESPACE="monitoring"
 HIPSTER_NAMESPACE="hipster-shop"
@@ -15,7 +15,7 @@ echo
 echo "=== MOrA Setup Verification ==="
 echo
 
-# Check kubectl connectivity
+
 echo "1. Checking kubectl connectivity..."
 if kubectl cluster-info >/dev/null 2>&1; then
     echo "✅ kubectl can access the cluster"
@@ -25,7 +25,7 @@ else
     exit 1
 fi
 
-# Check Prometheus namespace and pods
+
 echo
 echo "2. Checking Prometheus stack..."
 if kubectl get namespace "${PROM_NAMESPACE}" >/dev/null 2>&1; then
@@ -44,7 +44,7 @@ else
     exit 1
 fi
 
-# Check Hipster Shop deployment
+
 echo
 echo "3. Checking Hipster Shop deployment..."
 if kubectl get namespace "${HIPSTER_NAMESPACE}" >/dev/null 2>&1; then
@@ -66,7 +66,7 @@ else
     exit 1
 fi
 
-# Check Prometheus port-forward
+
 echo
 echo "4. Checking Prometheus port-forward..."
 if [[ -f ".prom_portforward.pid" ]]; then
@@ -74,7 +74,7 @@ if [[ -f ".prom_portforward.pid" ]]; then
     if kill -0 "${PID}" 2>/dev/null; then
         echo "✅ Prometheus port-forward is running (PID: ${PID})"
         
-        # Test HTTP endpoint
+
         if curl -fsS "http://localhost:${PROM_LOCAL_PORT}/-/ready" >/dev/null 2>&1; then
             echo "✅ Prometheus is accessible at http://localhost:${PROM_LOCAL_PORT}"
         else
@@ -87,7 +87,7 @@ else
     echo "❌ No port-forward detected - Prometheus may not be accessible locally"
 fi
 
-# Check Grafana port-forward
+
 echo
 echo "5. Checking Grafana port-forward..."
 if [[ -f ".grafana_portforward.pid" ]]; then
@@ -95,7 +95,7 @@ if [[ -f ".grafana_portforward.pid" ]]; then
     if kill -0 "${PID}" 2>/dev/null; then
         echo "✅ Grafana port-forward is running (PID: ${PID})"
         
-        # Test HTTP endpoint
+
         if curl -fsS "http://localhost:${GRAFANA_LOCAL_PORT}/api/health" >/dev/null 2>&1; then
             echo "✅ Grafana is accessible at http://localhost:${GRAFANA_LOCAL_PORT}"
         else
@@ -108,7 +108,7 @@ else
     echo "❌ No Grafana port-forward detected"
 fi
 
-# Summary
+
 echo
 echo "=== Verification Summary ==="
 echo "If all checks passed, you can now:"

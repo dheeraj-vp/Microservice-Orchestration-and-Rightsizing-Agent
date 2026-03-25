@@ -1,6 +1,4 @@
-"""
-Test cases for CLI commands - Updated for new CLI structure
-"""
+
 import pytest
 from click.testing import CliRunner
 from unittest.mock import Mock, patch
@@ -8,44 +6,42 @@ import os
 import tempfile
 import json
 
-# Import the main CLI
+
 from src.mora.cli.main import main
 
-
 class TestCLI:
-    """Test cases for CLI commands"""
-    
+
     def setup_method(self):
-        """Set up test fixtures"""
+
         self.runner = CliRunner()
-    
+
     def test_main_help(self):
-        """Test that main command shows help"""
+
         result = self.runner.invoke(main, ['--help'])
         assert result.exit_code == 0
         assert "MOrA - Microservices-Aware Orchestrator Agent" in result.output
         assert "rightsize" in result.output
         assert "status" in result.output
         assert "train" in result.output
-    
+
     def test_rightsize_command_help(self):
-        """Test rightsize command help"""
+
         result = self.runner.invoke(main, ['rightsize', '--help'])
         assert result.exit_code == 0
         assert "Generate rightsizing recommendations" in result.output
         assert "--service" in result.output
         assert "--strategy" in result.output
         assert "--namespace" in result.output
-    
+
     def test_status_command_help(self):
-        """Test status command help"""
+
         result = self.runner.invoke(main, ['status', '--help'])
         assert result.exit_code == 0
         assert "Show current status" in result.output
         assert "--namespace" in result.output
-    
+
     def test_train_command_help(self):
-        """Test train command help"""
+
         result = self.runner.invoke(main, ['train', '--help'])
         assert result.exit_code == 0
         assert "ML model training and data collection commands" in result.output
@@ -55,17 +51,17 @@ class TestCLI:
         assert "collect-data" in result.output
         assert "collect-data-parallel" in result.output
         assert "status" in result.output
-    
+
     def test_lightweight_command_help(self):
-        """Test lightweight training command help"""
+
         result = self.runner.invoke(main, ['train', 'lightweight', '--help'])
         assert result.exit_code == 0
         assert "lightweight" in result.output.lower()
         assert "--service" in result.output
         assert "--services" in result.output
-    
+
     def test_models_command_help(self):
-        """Test models command help"""
+
         result = self.runner.invoke(main, ['train', 'models', '--help'])
         assert result.exit_code == 0
         assert "Train ML models using advanced algorithms" in result.output
@@ -74,44 +70,44 @@ class TestCLI:
         assert "--config" in result.output
         assert "--data-dir" in result.output
         assert "--model-dir" in result.output
-    
+
     def test_evaluate_command_help(self):
-        """Test evaluate command help"""
+
         result = self.runner.invoke(main, ['train', 'evaluate', '--help'])
         assert result.exit_code == 0
         assert "Evaluate trained models using unified evaluation system" in result.output
         assert "--service" in result.output
         assert "--model-dir" in result.output
         assert "--data-dir" in result.output
-    
+
     def test_collect_data_command_help(self):
-        """Test collect-data command help"""
+
         result = self.runner.invoke(main, ['train', 'collect-data', '--help'])
         assert result.exit_code == 0
         assert "Collect training data for ML model training" in result.output
         assert "--service" in result.output
         assert "--config-file" in result.output
-    
+
     def test_collect_data_parallel_command_help(self):
-        """Test collect-data-parallel command help"""
+
         result = self.runner.invoke(main, ['train', 'collect-data-parallel', '--help'])
         assert result.exit_code == 0
         assert "Collect training data for multiple services in parallel" in result.output
         assert "--services" in result.output
         assert "--max-workers" in result.output
-    
+
     def test_train_status_command_help(self):
-        """Test train status command help"""
+
         result = self.runner.invoke(main, ['train', 'status', '--help'])
         assert result.exit_code == 0
         assert "Check training experiment progress for a service" in result.output
         assert "--service" in result.output
         assert "--config-file" in result.output
-    
+
     @patch('train_models.train_professional_ml_pipeline.ProfessionalMLPipeline')
     def test_models_command_execution(self, mock_pipeline_class):
-        """Test models command execution"""
-        # Mock the pipeline
+
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline.train_service.return_value = {
@@ -126,21 +122,21 @@ class TestCLI:
                 'mape': 0.08
             }
         }
-        
+
         result = self.runner.invoke(main, [
             'train', 'models',
             '--service', 'frontend'
         ])
-        
+
         assert result.exit_code == 0
         assert 'Training completed successfully!' in result.output
         assert 'frontend' in result.output
         assert 'XGBoost' in result.output
-    
+
     @patch('evaluate_models.evaluate_professional_models.ProfessionalModelEvaluator')
     def test_evaluate_command_execution(self, mock_evaluator_class):
-        """Test evaluate command execution"""
-        # Mock the evaluator
+
+
         mock_evaluator = Mock()
         mock_evaluator_class.return_value = mock_evaluator
         mock_evaluator.evaluate_service.return_value = {
@@ -158,28 +154,26 @@ class TestCLI:
                 ]
             }
         }
-        
+
         result = self.runner.invoke(main, [
             'train', 'evaluate',
             '--service', 'frontend'
         ])
-        
+
         assert result.exit_code == 0
         assert 'Evaluation completed successfully!' in result.output
         assert 'frontend' in result.output or 'Service' in result.output
 
-
 class TestCLIIntegration:
-    """Integration tests for CLI commands with mocked backends"""
-    
+
     def setup_method(self):
-        """Set up test fixtures"""
+
         self.runner = CliRunner()
-    
+
     @patch('src.mora.cli.main.DataPipeline')
     def test_status_command_success(self, mock_pipeline_class):
-        """Test status command with successful connections"""
-        # Mock successful connections
+
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline.test_connections.return_value = {
@@ -191,84 +185,82 @@ class TestCLIIntegration:
             'available_metrics': ['cpu_usage', 'memory_usage'],
             'working_metrics': ['cpu_usage', 'memory_usage']
         }
-        
+
         result = self.runner.invoke(main, ['status'])
-        
+
         assert result.exit_code == 0
         assert 'System Status' in result.output
         assert 'frontend' in result.output
         assert 'cartservice' in result.output
-    
+
     @patch('src.mora.cli.main.DataPipeline')
     def test_rightsize_command_with_mocks(self, mock_pipeline_class):
-        """Test rightsize command with mocked pipeline"""
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline.test_connections.return_value = {
             'kubernetes': True,
             'prometheus': True
         }
-        
-        # Mock service data
+
+
         mock_service_data = {
             'cpu_usage': [0.1, 0.2, 0.3],
             'memory_usage': [100, 200, 300]
         }
         mock_pipeline.collect_service_data.return_value = mock_service_data
-        
+
         result = self.runner.invoke(main, [
             'rightsize',
             '--service', 'frontend',
             '--strategy', 'statistical'
         ])
-        
-        # Should run without critical errors (may fail due to missing deps)
+
+
         assert result.exit_code == 0 or result.exit_code == 1
-    
+
     def test_rightsize_command_validation(self):
-        """Test rightsize command parameter validation"""
+
         result = self.runner.invoke(main, ['rightsize', '--help'])
         assert result.exit_code == 0
         assert "--service" in result.output
         assert "--strategy" in result.output
         assert "--duration-hours" in result.output
         assert "--output-format" in result.output
-    
+
     def test_output_format_options(self):
-        """Test that output format options are available"""
+
         result = self.runner.invoke(main, ['rightsize', '--help'])
         assert result.exit_code == 0
         assert "table" in result.output
         assert "yaml" in result.output
         assert "json" in result.output
 
-
 class TestCLIErrorHandling:
-    """Test error handling in CLI commands"""
-    
+
     def setup_method(self):
-        """Set up test fixtures"""
+
         self.runner = CliRunner()
-    
+
     @patch('src.mora.cli.main.DataPipeline')
     def test_connection_failure_handling(self, mock_pipeline_class):
-        """Test handling of connection failures"""
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline.test_connections.return_value = {
             'kubernetes': False,
             'prometheus': False
         }
-        
+
         result = self.runner.invoke(main, ['status'])
-        
-        # Should handle connection failure gracefully
+
+
         assert result.exit_code == 0
         assert 'System Status' in result.output
-    
+
     @patch('src.mora.cli.main.DataPipeline')
     def test_service_not_found_handling(self, mock_pipeline_class):
-        """Test handling of service not found"""
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline.test_connections.return_value = {
@@ -276,29 +268,27 @@ class TestCLIErrorHandling:
             'prometheus': True
         }
         mock_pipeline.collect_service_data.return_value = {}
-        
+
         result = self.runner.invoke(main, [
             'rightsize',
             '--service', 'nonexistent-service',
             '--strategy', 'statistical'
         ])
-        
-        # Should handle service not found gracefully
+
+
         assert result.exit_code == 0 or result.exit_code == 1
 
-
 class TestDataCollectionCommands:
-    """Test data collection commands"""
-    
+
     def setup_method(self):
-        """Set up test fixtures"""
+
         self.runner = CliRunner()
-    
+
     @patch('src.mora.cli.main.DataAcquisitionPipeline')
     @patch('src.mora.cli.main.load_config')
     def test_collect_data_command_execution(self, mock_load_config, mock_pipeline_class):
-        """Test collect-data command execution"""
-        # Mock config
+
+
         mock_config = {
             'training': {
                 'steady_state_config': {
@@ -312,8 +302,8 @@ class TestDataCollectionCommands:
             'prometheus': {'url': 'http://localhost:9090'}
         }
         mock_load_config.return_value = mock_config
-        
-        # Mock pipeline
+
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline._get_completed_experiments.return_value = set()
@@ -322,20 +312,20 @@ class TestDataCollectionCommands:
             'experiments_completed': 12,
             'data_quality': 'Good'
         }
-        
+
         result = self.runner.invoke(main, [
             'train', 'collect-data',
             '--service', 'frontend'
         ])
-        
-        # Should run without critical errors
+
+
         assert result.exit_code == 0 or result.exit_code == 1
-    
+
     @patch('src.mora.cli.main.DataAcquisitionPipeline')
     @patch('src.mora.cli.main.load_config')
     def test_collect_data_parallel_command_execution(self, mock_load_config, mock_pipeline_class):
-        """Test collect-data-parallel command execution"""
-        # Mock config
+
+
         mock_config = {
             'training': {
                 'steady_state_config': {
@@ -349,8 +339,8 @@ class TestDataCollectionCommands:
             'prometheus': {'url': 'http://localhost:9090'}
         }
         mock_load_config.return_value = mock_config
-        
-        # Mock pipeline
+
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline.run_parallel_training_experiments.return_value = {
@@ -359,21 +349,21 @@ class TestDataCollectionCommands:
             'failed_services': 0,
             'total_experiments': 8
         }
-        
+
         result = self.runner.invoke(main, [
             'train', 'collect-data-parallel',
             '--services', 'frontend,cartservice',
             '--max-workers', '2'
         ])
-        
-        # Should run without critical errors
+
+
         assert result.exit_code == 0 or result.exit_code == 1
-    
+
     @patch('src.mora.cli.main.DataAcquisitionPipeline')
     @patch('src.mora.cli.main.load_config')
     def test_train_status_command_execution(self, mock_load_config, mock_pipeline_class):
-        """Test train status command execution"""
-        # Mock config
+
+
         mock_config = {
             'training': {
                 'steady_state_config': {
@@ -386,64 +376,61 @@ class TestDataCollectionCommands:
             'prometheus': {'url': 'http://localhost:9090'}
         }
         mock_load_config.return_value = mock_config
-        
-        # Mock pipeline
+
+
         mock_pipeline = Mock()
         mock_pipeline_class.return_value = mock_pipeline
         mock_pipeline._get_completed_experiments.return_value = {
             'frontend_browsing_replicas_1_users_5',
             'frontend_browsing_replicas_2_users_10'
         }
-        
+
         result = self.runner.invoke(main, [
             'train', 'status',
             '--service', 'frontend'
         ])
-        
+
         assert result.exit_code == 0
         assert 'Training Progress for frontend' in result.output
         assert 'Completed: 2' in result.output
 
-
 class TestCLIProductionReadiness:
-    """Test production readiness features"""
-    
+
     def setup_method(self):
-        """Set up test fixtures"""
+
         self.runner = CliRunner()
-    
+
     def test_error_handling_in_status_command(self):
-        """Test that status command handles errors gracefully"""
+
         with patch('src.mora.cli.main.DataPipeline') as mock_pipeline_class:
-            # Simulate an error during pipeline initialization
+
             mock_pipeline_class.side_effect = Exception("Connection failed")
-            
+
             result = self.runner.invoke(main, ['status'])
-            
-            # Should handle error gracefully and not crash
+
+
             assert result.exit_code == 0
-    
+
     @patch('src.mora.cli.main.load_config')
     def test_config_file_handling_in_status_command(self, mock_load_config):
-        """Test that status command loads config correctly"""
+
         mock_config = {
             'kubernetes': {'namespace': 'test-namespace'},
             'prometheus': {'url': 'http://test-prometheus:9090'}
         }
         mock_load_config.return_value = mock_config
-        
+
         with patch('src.mora.cli.main.DataPipeline') as mock_pipeline_class:
             mock_pipeline = Mock()
             mock_pipeline_class.return_value = mock_pipeline
             mock_pipeline.test_connections.return_value = {'kubernetes': True, 'prometheus': True}
             mock_pipeline.get_deployed_services.return_value = ['frontend']
             mock_pipeline.test_prometheus_metrics.return_value = {'available_metrics': [], 'working_metrics': []}
-            
+
             result = self.runner.invoke(main, ['status'])
-            
+
             assert result.exit_code == 0
-            # Note: status command doesn't load config file by default, it uses hardcoded defaults
-            # This test verifies the command works with mocked components
+
 
 
 if __name__ == '__main__':

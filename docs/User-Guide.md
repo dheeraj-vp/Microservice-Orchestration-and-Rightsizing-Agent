@@ -13,6 +13,10 @@
 
 ## Quick Start
 
+### Workflow Diagram
+
+![Workflow Sequence](Sequence-Diagram.png)
+
 ### Prerequisites Check
 ```bash
 # Verify system setup
@@ -48,6 +52,8 @@ python3 -m src.mora.cli.main [COMMAND] [OPTIONS]
 - `train`: Data collection and model training
 - `status`: Check system and training status
 - `clean`: Clean up experiment data
+- `evaluate`:  comparative evaluation (NEW)
+- `rightsize`: Generate rightsizing recommendations
 - `--help`: Show help information
 
 ### Data Collection Commands
@@ -617,10 +623,76 @@ except Exception as e:
 - Record troubleshooting solutions
 - Maintain change logs
 
----
+##  Comparative Evaluation
 
-**User Guide Version**: 1.0  
-**Last Updated**: October 25, 2024  
-**Compatible With**: MOrA v1.0  
-**CLI Version**: 2.0  
-**Tested Commands**: All commands verified and working
+### Overview
+
+The evaluation framework allows you to compare different rightsizing strategies (statistical, predictive, HPA) and measure their effectiveness in terms of cost efficiency, performance integrity, and stability.
+
+### Quick Start
+
+```bash
+# Run POC evaluation (single service, single load level)
+./scripts/run_evaluation_poc.sh checkoutservice
+
+# Or use CLI directly
+python3 -m src.mora.cli.main evaluate run-experiment \
+    --service checkoutservice \
+    --strategy all \
+    --poc
+```
+
+### Evaluation Commands
+
+#### Run Comparative Experiment
+
+```bash
+# Run POC evaluation (recommended for testing)
+python3 -m src.mora.cli.main evaluate run-experiment \
+    --service checkoutservice \
+    --strategy all \
+    --poc \
+    --output-dir evaluation_results
+
+# Run full evaluation (all strategies, all load levels)
+python3 -m src.mora.cli.main evaluate run-experiment \
+    --service checkoutservice \
+    --strategy all \
+    --load-levels "10,30,75" \
+    --output-dir evaluation_results
+```
+
+#### Analyze Results
+
+```bash
+# Generate comparative report
+python3 -m src.mora.cli.main evaluate analyze \
+    --service checkoutservice \
+    --output-dir evaluation_results \
+    --format markdown
+```
+
+### Evaluation Results
+
+Results are saved to `evaluation_results/`:
+- `metrics/`: Raw metrics data (JSON files)
+- `reports/`: Generated comparative reports (Markdown)
+- `*_comparative_results.json`: Consolidated experiment data
+
+### Understanding Results
+
+**Cost Efficiency Metrics**:
+- CPU-hours and Memory-hours consumed
+- Average resource usage
+- Cost savings percentage
+
+**Performance Integrity Metrics**:
+- P95 latency
+- Error rate
+- Throughput
+
+**Stability Metrics**:
+- Scaling events
+- System volatility
+- Oscillation count
+

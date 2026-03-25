@@ -369,21 +369,6 @@ Expected performance with professional pipeline:
 
 ## Architecture Overview
 
-### High-Level Architecture
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data          │    │   Feature       │    │   Model         │
-│   Collection    │───▶│   Engineering   │───▶│   Training      │
-│   (Prometheus)  │    │   (12 Metrics)  │    │   (Prophet+LSTM)│
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                       │
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Resource      │◀───│   Prediction    │◀───│   Model         │
-│   Recommendations│    │   Fusion        │    │   Inference     │
-│   (CPU/Mem/Rep) │    │   (Weighted)    │    │   (Real-time)   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
 
 ### Core Components
 
@@ -868,7 +853,7 @@ python3 -m src.mora.cli.main train collect-data-parallel --services "frontend,ca
 1. **Multi-service Coordination**: Global optimization across services
 2. **Real-time Learning**: Online learning capabilities
 3. **Advanced Ensembles**: XGBoost, LightGBM integration
-4. **Explainable AI**: SHAP values for prediction interpretability
+4. **Model Interpretability**: SHAP values for prediction interpretability
 
 ### Production Considerations
 1. **Model Versioning**: MLflow integration for model management
@@ -908,14 +893,3 @@ This dual pipeline system serves as a foundation for intelligent microservice or
 
 ---
 
-**Documentation Version**: 3.0  
-**Last Updated**: October 25, 2024  
-**Pipeline Version**: Dual Pipeline v3.0 (Professional + Lightweight)  
-**Status**: Production Ready ✅ (Dual Pipeline Architecture)  
-**Architecture**: Professional (6 algorithms) + Lightweight (2 algorithms)  
-**ML Algorithms**: 
-- **Professional**: LSTM, Prophet, XGBoost, LightGBM, RandomForest, GradientBoosting
-- **Lightweight**: LSTM + Prophet only (CPU-friendly)  
-**Evaluation Suite**: Comprehensive model evaluation with statistical analysis  
-**CLI Interface**: Unified command-line interface with both training options  
-**Code Quality**: Industry-standard architecture with proper error handling and logging

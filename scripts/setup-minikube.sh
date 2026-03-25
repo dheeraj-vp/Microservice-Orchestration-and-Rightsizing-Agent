@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# -----------------------------------------------------------------------------
-# Setup script for MOrA Phase 1 test environment
-# - Starts minikube if needed
-# - Installs prometheus kube-prometheus-stack (helm)
-# - Deploys Google microservices-demo (hipster shop)
-# - Port-forwards Prometheus to localhost:9090 (background)
-# -----------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 PROM_RELEASE_NAME="prometheus"
 PROM_NAMESPACE="monitoring"
@@ -23,10 +23,10 @@ HELM_CHART="kube-prometheus-stack"
 HELM_TIMEOUT="10m"
 
 echo
-echo "=== MOrA Phase 1 quick setup ==="
+echo "=== MOrA quick setup ==="
 echo
 
-# helper: check command exists
+
 check_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
     echo "ERROR: required command '$1' not found in PATH. Install it and re-run."
@@ -39,7 +39,7 @@ check_cmd kubectl
 check_cmd helm
 check_cmd curl || check_cmd wget
 
-# 1) Start minikube if necessary
+
 echo
 echo "=> Checking Minikube status..."
 MINI_STATUS="$(minikube status --format='{{.Host}} {{.Kubelet}} {{.APIServer}} {{.KubeConfig}}' 2>/dev/null || true)"
@@ -48,7 +48,7 @@ if [[ -z "$MINI_STATUS" ]]; then
   minikube start --memory=8192 --cpus=4 --disk-size=20GB
 else
   echo "Minikube status: $MINI_STATUS"
-  # If apiserver stopped, restart
+
   if echo "$MINI_STATUS" | grep -q "Stopped"; then
     echo "Minikube API server appears stopped — restarting minikube..."
     minikube stop || true
@@ -56,7 +56,7 @@ else
   fi
 fi
 
-# ensure kubectl context is set
+
 echo
 echo "=> Ensuring kubectl is pointed at minikube..."
 kubectl cluster-info >/dev/null 2>&1 || {
@@ -65,13 +65,13 @@ kubectl cluster-info >/dev/null 2>&1 || {
 }
 kubectl config use-context minikube >/dev/null 2>&1 || true
 
-# Enable required addons
+
 echo
 echo "=> Enabling required addons..."
 minikube addons enable ingress >/dev/null 2>&1 || true
 minikube addons enable metrics-server >/dev/null 2>&1 || true
 
-# 2) Add Helm repo and install kube-prometheus-stack
+
 echo
 echo "=> Adding/updating Helm repo ${HELM_REPO_NAME}..."
 helm repo add "${HELM_REPO_NAME}" "${HELM_REPO_URL}" >/dev/null 2>&1 || true
@@ -88,7 +88,7 @@ helm upgrade --install "${PROM_RELEASE_NAME}" "${HELM_REPO_NAME}/${HELM_CHART}" 
 
 echo "Prometheus helm chart installed/upgraded."
 
-# 3) Deploy sample app (Hipster Shop / microservices-demo)
+
 echo
 echo "=> Creating namespace for Hipster Shop..."
 kubectl create namespace "${HIPSTER_NAMESPACE}" >/dev/null 2>&1 || true
@@ -99,7 +99,7 @@ if kubectl get deployment frontend -n "${HIPSTER_NAMESPACE}" >/dev/null 2>&1; th
   echo "Found existing 'frontend' deployment in namespace '${HIPSTER_NAMESPACE}' — skipping sample app apply."
 else
   echo "Applying hipster shop manifest (this may take a few minutes to pull images)..."
-  # Use curl or wget to apply the manifest
+
   if command -v curl >/dev/null 2>&1; then
     curl -fsSL "${HIPSTER_MANIFEST}" | kubectl apply -f - -n "${HIPSTER_NAMESPACE}"
   else
@@ -107,10 +107,10 @@ else
   fi
 fi
 
-# 4) Wait for key pods to be ready (Prometheus server + frontend)
+
 echo
 echo "=> Waiting for Prometheus server pod to be ready in namespace '${PROM_NAMESPACE}'..."
-# detect prometheus server pods using label app.kubernetes.io/name=prometheus (common for kube-prometheus-stack)
+
 kubectl -n "${PROM_NAMESPACE}" wait --for=condition=ready pod -l app.kubernetes.io/name=prometheus --timeout=5m || {
   echo "Warning: Prometheus server pods did not become ready in 5m. You can check with: kubectl -n ${PROM_NAMESPACE} get pods"
 }
@@ -125,19 +125,19 @@ else
   echo "No 'frontend' deployment found in ${HIPSTER_NAMESPACE} namespace (the manifest may have a different name)."
 fi
 
-# 5) Find Prometheus service name (try common label, fallback to default-release name)
+
 echo
 echo "=> Locating Prometheus service in namespace '${PROM_NAMESPACE}'..."
 PROM_SVC="$(kubectl -n "${PROM_NAMESPACE}" get svc -l app.kubernetes.io/name=prometheus -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true)"
 if [[ -z "${PROM_SVC}" ]]; then
-  # fallback name used by many kube-prometheus-stack releases
+
   PROM_SVC="${PROM_RELEASE_NAME}-kube-prometheus-prometheus"
   echo "Couldn't find service by label; falling back to service name '${PROM_SVC}'."
 fi
 
 echo "Prometheus service: ${PROM_SVC}"
 
-# 6) Port-forward Prometheus to localhost:9090 (background)
+
 echo
 if [[ -f "${PORTFORWARD_PID_FILE}" ]]; then
   OLDPID="$(cat "${PORTFORWARD_PID_FILE}" || true)"
@@ -151,17 +151,17 @@ fi
 
 if [[ ! -f "${PORTFORWARD_PID_FILE}" ]]; then
   echo "Starting port-forward: localhost:${PROM_LOCAL_PORT} -> svc/${PROM_SVC}:${PROM_LOCAL_PORT} (namespace ${PROM_NAMESPACE})"
-  # run in background with nohup; redirect output for debugging
+
   nohup kubectl -n "${PROM_NAMESPACE}" port-forward "svc/${PROM_SVC}" ${PROM_LOCAL_PORT}:${PROM_LOCAL_PORT} \
     > .prom_portforward.log 2>&1 &
   PF_PID=$!
   echo "${PF_PID}" > "${PORTFORWARD_PID_FILE}"
   echo "Port-forward started (PID ${PF_PID}). Logs: .prom_portforward.log"
-  # give it a sec to start
+
   sleep 2
 fi
 
-# quick readiness check for prometheus metrics endpoint
+
 echo
 echo "=> Verifying Prometheus HTTP endpoint on http://localhost:${PROM_LOCAL_PORT}/-/ready ..."
 if curl -fsS "http://localhost:${PROM_LOCAL_PORT}/-/ready" >/dev/null 2>&1; then
@@ -170,19 +170,19 @@ else
   echo "Prometheus /-/ready did not respond immediately. Check .prom_portforward.log and pod logs: kubectl -n ${PROM_NAMESPACE} logs -l app.kubernetes.io/name=prometheus --tail=200"
 fi
 
-# 7) Find Grafana service and set up port-forward
+
 echo
 echo "=> Locating Grafana service in namespace '${PROM_NAMESPACE}'..."
 GRAFANA_SVC="$(kubectl -n "${PROM_NAMESPACE}" get svc -l app.kubernetes.io/name=grafana -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true)"
 if [[ -z "${GRAFANA_SVC}" ]]; then
-  # fallback name used by kube-prometheus-stack
+
   GRAFANA_SVC="${PROM_RELEASE_NAME}-grafana"
   echo "Couldn't find Grafana service by label; falling back to service name '${GRAFANA_SVC}'."
 fi
 
 echo "Grafana service: ${GRAFANA_SVC}"
 
-# Port-forward Grafana to localhost:${GRAFANA_LOCAL_PORT} (background)
+
 echo
 if [[ -f "${GRAFANA_PID_FILE}" ]]; then
   OLDPID="$(cat "${GRAFANA_PID_FILE}" || true)"
@@ -196,17 +196,17 @@ fi
 
 if [[ ! -f "${GRAFANA_PID_FILE}" ]]; then
   echo "Starting Grafana port-forward: localhost:${GRAFANA_LOCAL_PORT} -> svc/${GRAFANA_SVC}:80 (namespace ${PROM_NAMESPACE})"
-  # run in background with nohup; redirect output for debugging
+
   nohup kubectl -n "${PROM_NAMESPACE}" port-forward "svc/${GRAFANA_SVC}" ${GRAFANA_LOCAL_PORT}:80 \
     > .grafana_portforward.log 2>&1 &
   GF_PID=$!
   echo "${GF_PID}" > "${GRAFANA_PID_FILE}"
   echo "Grafana port-forward started (PID ${GF_PID}). Logs: .grafana_portforward.log"
-  # give it a sec to start
+
   sleep 2
 fi
 
-# quick readiness check for Grafana
+
 echo
 echo "=> Verifying Grafana HTTP endpoint on http://localhost:${GRAFANA_LOCAL_PORT} ..."
 if curl -fsS "http://localhost:${GRAFANA_LOCAL_PORT}/api/health" >/dev/null 2>&1; then
@@ -216,7 +216,7 @@ else
   echo "Grafana /api/health did not respond immediately. Check .grafana_portforward.log and pod logs: kubectl -n ${PROM_NAMESPACE} logs -l app.kubernetes.io/name=grafana --tail=200"
 fi
 
-# 8) Done
+
 echo
 echo "=== MOrA Setup complete ==="
 echo "Prometheus is reachable at: http://localhost:${PROM_LOCAL_PORT}"

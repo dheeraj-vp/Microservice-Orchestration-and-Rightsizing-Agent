@@ -22,42 +22,7 @@
 - **Production Ready**: Industry-standard architecture with robust error handling
 - **CLI Interface**: Easy-to-use command-line tools for all operations
 
-### Project Structure
-```
-MOrA/
-├── src/                    # Core source code
-│   └── mora/
-│       ├── cli/            # Command-line interface
-│       ├── core/           # Core business logic
-│       ├── k8s/            # Kubernetes integration
-│       ├── models/         # ML model implementations
-│       ├── monitoring/     # Prometheus integration
-│       └── utils/          # Utility functions
-├── config/                 # Configuration files
-├── scripts/                # Setup and utility scripts
-├── tests/                  # Test suites
-├── train_models/           # Model training scripts
-├── evaluate_models/        # Model evaluation scripts
-├── utils/                  # Utility scripts
-├── models/                 # Trained model storage
-├── training_data/          # Collected training data
-└── docs/                   # Documentation
-```
-
 ## System Architecture
-
-### High-Level Architecture
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Kubernetes     │    │   Prometheus     │    │   MOrA System   │
-│   (Hipster Shop) │───▶│   Monitoring     │───▶│   (Data + ML)   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                       │
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Resource      │◀───│   Recommendations│◀───│   ML Pipeline   │
-│   Optimization  │    │   Engine         │    │   (LSTM+Prophet)│
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
 
 ### Component Overview
 
@@ -410,9 +375,4 @@ python3 tests/run_e2e_validation.py
 4. Run the test suite
 5. Submit a pull request
 
----
 
-**Setup Guide Version**: 1.0  
-**Last Updated**: October 25, 2024  
-**Compatible With**: MOrA v1.0  
-**Tested On**: Ubuntu 20.04, Python 3.8+, Minikube 1.28+

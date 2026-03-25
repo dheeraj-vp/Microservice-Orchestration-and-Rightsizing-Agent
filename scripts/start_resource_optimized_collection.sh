@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# MOrA Resource-Optimized Data Collection Starter
-# This script starts data collection with resource-optimized settings
+
+
 
 echo "=========================================="
 echo "🚀 MOrA RESOURCE-OPTIMIZED DATA COLLECTION"
@@ -9,7 +9,7 @@ echo "=========================================="
 echo "Timestamp: $(date)"
 echo ""
 
-# Check system resources first
+
 echo "🔍 Checking system resources..."
 ./check_system_resources.sh
 
@@ -23,7 +23,7 @@ echo "  • Total Experiments: 36 (vs 96 default)"
 echo "  • Estimated Time: ~18 hours (vs 72 hours default)"
 echo ""
 
-# Check if system is ready
+
 echo "🏥 Checking system health..."
 if ! kubectl cluster-info >/dev/null 2>&1; then
     echo "❌ Kubernetes cluster not accessible"
@@ -40,12 +40,12 @@ fi
 echo "✅ System is ready for data collection"
 echo ""
 
-# Start data collection
+
 echo "🚀 Starting resource-optimized data collection..."
 echo "This will run in the background and save data immediately after each experiment."
 echo ""
 
-# Start the data collection process
+
 nohup python3 -m src.mora.cli.main train collect-data-parallel \
     --services "frontend,checkoutservice" \
     --config-file config/resource-optimized.yaml \
@@ -57,14 +57,14 @@ echo "Data collection started with PID: $COLLECTION_PID"
 echo "Log file: data_collection.log"
 echo ""
 
-# Create monitoring script
+
 cat > monitor_collection.sh << 'EOF'
 #!/bin/bash
 echo "=== MOrA DATA COLLECTION MONITOR ==="
 echo "Timestamp: $(date)"
 echo ""
 
-# Check if process is running
+
 if pgrep -f "collect-data-parallel" > /dev/null; then
     echo "✅ Data collection process is RUNNING"
     echo "   PID: $(pgrep -f 'collect-data-parallel')"
@@ -72,7 +72,7 @@ else
     echo "❌ Data collection process is NOT RUNNING"
 fi
 
-# Check data collection results
+
 if [ -d "training_data" ]; then
     json_count=$(find training_data -name "*.json" 2>/dev/null | wc -l)
     csv_count=$(find training_data -name "*.csv" 2>/dev/null | wc -l)
@@ -84,7 +84,7 @@ else
     echo "📊 No training data collected yet"
 fi
 
-# Check system resources
+
 echo ""
 echo "💻 System Resources:"
 echo "   CPU: $(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)%"

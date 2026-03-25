@@ -12,34 +12,10 @@
 
 ## System Architecture
 
-### High-Level System Overview
+### Visual Architecture Diagram
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        MOrA System                              │
-│                    (Microservice Orchestration                  │
-│                     and Rightsizing Agent)                      │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data Layer    │    │   ML Layer      │    │   Control Layer │
-│                 │    │                 │    │                 │
-│ • Prometheus    │    │ • LSTM Models   │    │ • CLI Interface │
-│ • Kubernetes    │    │ • Prophet Models│    │ • Orchestrator  │
-│ • JMeter        │    │ • Fusion Engine │    │ • Scheduler     │
-│ • Data Pipeline │    │ • Predictions   │    │ • Monitor       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Application Layer                           │
-│                                                                 │
-│ • Hipster Shop (Sample Microservices)                          │
-│ • Resource Optimization Engine                                  │
-│ • Recommendation System                                         │
-└─────────────────────────────────────────────────────────────────┘
-```
+![System Architecture](System-Architecture.png)
+
 
 ### Architecture Principles
 
@@ -61,85 +37,6 @@
 - **Data Quality**: Comprehensive validation and quality checks
 - **Data Lineage**: Full traceability of data transformations
 
-## Component Architecture
-
-### Core Components
-
-#### 1. Data Acquisition Pipeline
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Data Acquisition Pipeline                    │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Prometheus    │    │   Kubernetes    │    │   Load Generator │
-│   Client        │    │   Client        │    │   (JMeter)      │
-│                 │    │                 │    │                 │
-│ • Metrics Query │    │ • Pod Scaling   │    │ • Load Testing  │
-│ • Data Fetching │    │ • Deployment   │    │ • Scenario Gen  │
-│ • Query Cache   │    │ • Service Disc │    │ • Result Collect│
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                │               │               │
-                └───────────────┼───────────────┘
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Data Processing Engine                       │
-│                                                                 │
-│ • Data Validation                                               │
-│ • Quality Checks                                                │
-│ • Feature Engineering                                           │
-│ • Unified Storage                                               │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-#### 2. Machine Learning Pipeline
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    ML Pipeline Architecture                     │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Prophet       │    │   LSTM Models    │    │   Fusion Engine │
-│   Models        │    │                 │    │                 │
-│                 │    │ • Sequence Model│    │ • Weighted Avg  │
-│ • Trend Analysis│    │ • Pattern Learn │    │ • Confidence    │
-│ • Seasonality   │    │ • Deep Learning │    │ • Error Handling│
-│ • Forecasting   │    │ • Time Series   │    │ • Fallback      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                │               │               │
-                └───────────────┼───────────────┘
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Recommendation Engine                         │
-│                                                                 │
-│ • CPU Recommendations                                           │
-│ • Memory Recommendations                                        │
-│ • Replica Scaling                                               │
-│ • Confidence Scoring                                             │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-#### 3. Control and Orchestration Layer
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Control & Orchestration                      │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   CLI Interface │    │   Orchestrator  │    │   Monitor       │
-│                 │    │                 │    │                 │
-│ • Command Exec  │    │ • Workflow Mgmt │    │ • Health Checks │
-│ • User Input    │    │ • Task Sched    │    │ • Performance   │
-│ • Output Format │    │ • Resource Mgmt │    │ • Alerting      │
-│ • Help System   │    │ • Error Handling│    │ • Logging       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
 
 ### Component Interactions
 
@@ -171,32 +68,7 @@ CLICommand → Orchestrator → TaskExecution → ResultReporting
 CLICommand → Monitor → StatusCheck → HealthReporting
 ```
 
-## Data Flow Architecture
 
-### Data Collection Flow
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Experiment    │    │   Load          │    │   Metrics       │
-│   Initiation    │───▶│   Generation    │───▶│   Collection    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │                       │
-                                ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data          │◀───│   Data          │◀───│   Prometheus    │
-│   Processing    │    │   Validation    │    │   Queries       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Unified Data Storage                        │
-│                                                                 │
-│ • CSV Files (per experiment)                                   │
-│ • JSON Metadata                                                │
-│ • Quality Metrics                                              │
-│ • Experiment Context                                           │
-└─────────────────────────────────────────────────────────────────┘
-```
 
 ### Data Processing Pipeline
 
@@ -224,52 +96,6 @@ CLICommand → Monitor → StatusCheck → HealthReporting
 - **Quality Reports**: Data quality assessment results
 - **Resumable Storage**: Immediate saving to prevent data loss
 
-## ML Pipeline Architecture
-
-### Dual-Model Ensemble Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    ML Pipeline Architecture                     │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data          │    │   Feature       │    │   Model         │
-│   Preparation   │    │   Engineering   │    │   Training      │
-│                 │    │                 │    │                 │
-│ • Data Loading  │    │ • Target Creation│   │ • Prophet Train │
-│ • Quality Check │    │ • Context Feat  │    │ • LSTM Train    │
-│ • NaN Handling  │    │ • Scaling       │    │ • Validation    │
-│ • Sequence Gen  │    │ • Windowing     │    │ • Persistence   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Model Fusion Architecture                    │
-│                                                                 │
-│ ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│ │   Prophet       │    │   LSTM          │    │   Fusion         │
-│ │   Predictions   │───▶│   Predictions   │───▶│   Engine         │
-│ │                 │    │                 │    │                 │
-│ │ • Trend Forecast│    │ • Pattern Pred  │    │ • Weighted Avg  │
-│ │ • Seasonality   │    │ • Deep Learning │    │ • Confidence    │
-│ │ • Uncertainty   │    │ • Sequence Model│    │ • Error Handling│
-│ └─────────────────┘    └─────────────────┘    └─────────────────┘
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Recommendation Engine                         │
-│                                                                 │
-│ • CPU Core Recommendations                                      │
-│ • Memory Size Recommendations                                   │
-│ • Replica Count Recommendations                                 │
-│ • Confidence Scoring                                            │
-│ • Error Bounds                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
 
 ### Model Architecture Details
 
@@ -341,24 +167,7 @@ def create_working_predictions(prophet_results, lstm_results):
 ### Infrastructure Components
 
 #### 1. Kubernetes Cluster
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Kubernetes Cluster                           │
-│                    (Minikube - Development)                     │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Hipster Shop  │    │   Prometheus    │    │   MOrA System   │
-│   Namespace     │    │   Namespace     │    │   Components    │
-│                 │    │                 │    │                 │
-│ • Frontend      │    │ • Prometheus    │    │ • Data Pipeline │
-│ • Cartservice   │    │ • Grafana       │    │ • ML Pipeline   │
-│ • Checkout      │    │ • Alertmanager  │    │ • CLI Interface │
-│ • Other Services│    │ • ServiceMonitor│    │ • Monitor       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+
 
 #### 2. Service Discovery
 ```yaml
@@ -515,36 +324,6 @@ def batch_inference(models, data_batch):
 - **Indexing**: Create indexes for faster data retrieval
 - **Partitioning**: Partition data for parallel processing
 
-## Monitoring Architecture
-
-### Monitoring Stack
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Monitoring Architecture                      │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Prometheus    │    │   Grafana       │    │   Alertmanager  │
-│                 │    │                 │    │                 │
-│ • Metrics Store │    │ • Visualization │    │ • Alert Rules   │
-│ • Query Engine  │    │ • Dashboards    │    │ • Notifications │
-│ • Data Collection│   │ • Reporting     │    │ • Escalation    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Application Monitoring                       │
-│                                                                 │
-│ • System Health Checks                                          │
-│ • Performance Metrics                                           │
-│ • Error Tracking                                                │
-│ • Resource Utilization                                          │
-└─────────────────────────────────────────────────────────────────┘
-```
-
 ### Monitoring Components
 
 #### 1. Metrics Collection
@@ -628,8 +407,4 @@ groups:
 
 ---
 
-**Architecture Overview Version**: 1.0  
-**Last Updated**: October 25, 2024  
-**Compatible With**: MOrA v1.0  
-**Architecture Type**: Microservices + ML Pipeline  
-**Deployment**: Kubernetes + Prometheus + Custom ML Stack
+

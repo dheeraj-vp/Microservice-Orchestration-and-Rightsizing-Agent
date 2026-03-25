@@ -1,0 +1,108 @@
+# MOrA Phase 4 Evaluation Configuration
+# Based on resource-optimized.yaml for consistent, reproducible experiments
+
+# Experiment Configuration
+evaluation:
+  # Experiment duration (matches resource-optimized.yaml)
+  experiment_duration_minutes: 15
+  
+  # Test scenarios (matches resource-optimized.yaml)
+  replica_counts: [1, 2, 4]
+  load_levels_users: [5, 10, 20, 30, 50, 75]
+  test_scenarios: ['browsing', 'checkout']
+  
+  # Resource Limits (matches resource-optimized.yaml)
+  max_parallel_workers: 1
+  cpu_limit_per_worker: 2
+  memory_limit_per_worker: 2
+  
+  # Metrics Collection (matches resource-optimized.yaml)
+  metrics_collection_interval: 30  # seconds
+  prometheus_query_timeout: 10
+  max_retries: 3
+  
+  # Load Generation (matches resource-optimized.yaml)
+  jmeter_thread_ramp_up: 30
+  jmeter_thread_ramp_down: 30
+  jmeter_think_time: 2
+  
+  # System Monitoring (matches resource-optimized.yaml)
+  monitor_system_resources: true
+  pause_if_high_usage: true
+  high_usage_threshold: 80
+  
+  # Data Storage
+  save_interval_minutes: 5
+  compress_data: true
+  cleanup_temp_files: true
+
+# Evaluation Strategies to Compare
+strategies:
+  - name: "statistical"
+    description: "Baseline statistical strategy (95th percentile CPU, max memory + buffer)"
+    enabled: true
+    
+  - name: "predictive"
+    description: "MOrA predictive strategy with ML models and orchestrator"
+    enabled: true
+    enforce_policies: true
+    
+  - name: "hpa"
+    description: "Standard Kubernetes HPA control group"
+    enabled: true
+
+# Services to Evaluate
+services:
+  # Start with single service for POC
+  poc_services:
+    - checkoutservice
+  
+  # Full evaluation (all services)
+  full_evaluation_services:
+    - adservice
+    - cartservice
+    - checkoutservice
+    - currencyservice
+    - emailservice
+    - frontend
+    - paymentservice
+    - productcatalogservice
+    - recommendationservice
+    - shippingservice
+
+# Metrics to Collect
+metrics:
+  cost_efficiency:
+    - cpu_hours
+    - memory_hours
+    - total_cost
+    - cost_savings_percent
+    
+  performance_integrity:
+    - avg_response_time
+    - error_rate
+    - sla_compliance
+    - p95_latency
+    - throughput
+    
+  stability:
+    - scaling_events
+    - volatility
+    - oscillation_count
+    - settling_time
+    - resource_efficiency
+
+# Output Configuration
+output:
+  results_directory: "evaluation_results"
+  metrics_directory: "evaluation_results/metrics"
+  dashboards_directory: "evaluation_results/dashboards"
+  reports_directory: "evaluation_results/reports"
+  
+  # Export formats
+  export_formats:
+    - json
+    - csv
+    - markdown
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

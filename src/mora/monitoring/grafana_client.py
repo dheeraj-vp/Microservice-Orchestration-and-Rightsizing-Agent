@@ -1,6 +1,4 @@
-"""
-Grafana client for dashboard integration and visualization in MOrA
-"""
+
 import logging
 import requests
 import json
@@ -9,22 +7,12 @@ from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
-
 class GrafanaClient:
-    """Client for interacting with Grafana API"""
-    
-    def __init__(self, grafana_url: str = "http://localhost:4000", 
+
+    def __init__(self, grafana_url: str = "http://localhost:4000",
                  admin_user: str = "admin", admin_password: str = "admin",
                  timeout: int = 30):
-        """
-        Initialize Grafana client
-        
-        Args:
-            grafana_url: URL of Grafana server
-            admin_user: Grafana admin username
-            admin_password: Grafana admin password
-            timeout: Request timeout in seconds
-        """
+
         self.grafana_url = grafana_url.rstrip('/')
         self.admin_user = admin_user
         self.admin_password = admin_password
@@ -35,16 +23,11 @@ class GrafanaClient:
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         })
-        
+
         logger.info(f"GrafanaClient initialized for {grafana_url}")
-    
+
     def test_connection(self) -> bool:
-        """
-        Test Grafana connection and authentication
-        
-        Returns:
-            True if connection successful, False otherwise
-        """
+
         try:
             response = self.session.get(
                 f"{self.grafana_url}/api/health",
@@ -56,17 +39,9 @@ class GrafanaClient:
         except Exception as e:
             logger.error(f"Failed to connect to Grafana: {e}")
             return False
-    
+
     def get_dashboard(self, dashboard_uid: str) -> Optional[Dict[str, Any]]:
-        """
-        Get dashboard by UID
-        
-        Args:
-            dashboard_uid: Dashboard UID
-            
-        Returns:
-            Dashboard data or None if not found
-        """
+
         try:
             response = self.session.get(
                 f"{self.grafana_url}/api/dashboards/uid/{dashboard_uid}",
@@ -77,14 +52,9 @@ class GrafanaClient:
         except Exception as e:
             logger.error(f"Failed to get dashboard {dashboard_uid}: {e}")
             return None
-    
+
     def list_dashboards(self) -> List[Dict[str, Any]]:
-        """
-        List all dashboards
-        
-        Returns:
-            List of dashboard summaries
-        """
+
         try:
             response = self.session.get(
                 f"{self.grafana_url}/api/search?type=dash-db",
@@ -95,17 +65,9 @@ class GrafanaClient:
         except Exception as e:
             logger.error(f"Failed to list dashboards: {e}")
             return []
-    
+
     def get_data_source(self, name: str = "Prometheus") -> Optional[Dict[str, Any]]:
-        """
-        Get data source configuration
-        
-        Args:
-            name: Data source name (default: Prometheus)
-            
-        Returns:
-            Data source configuration or None
-        """
+
         try:
             response = self.session.get(
                 f"{self.grafana_url}/api/datasources/name/{name}",
@@ -116,17 +78,9 @@ class GrafanaClient:
         except Exception as e:
             logger.error(f"Failed to get data source {name}: {e}")
             return None
-    
+
     def create_mora_dashboard(self, namespace: str = "hipster-shop") -> Optional[str]:
-        """
-        Create MOrA-specific dashboard for monitoring microservices
-        
-        Args:
-            namespace: Kubernetes namespace to monitor
-            
-        Returns:
-            Dashboard UID if successful, None otherwise
-        """
+
         dashboard_config = {
             "dashboard": {
                 "id": None,
@@ -225,7 +179,7 @@ class GrafanaClient:
             },
             "overwrite": True
         }
-        
+
         try:
             response = self.session.post(
                 f"{self.grafana_url}/api/dashboards/db",
@@ -239,16 +193,11 @@ class GrafanaClient:
         except Exception as e:
             logger.error(f"Failed to create MOrA dashboard: {e}")
             return None
-    
+
     def verify_prometheus_datasource(self) -> bool:
-        """
-        Verify that Prometheus data source is configured and accessible
-        
-        Returns:
-            True if Prometheus data source is working, False otherwise
-        """
+
         try:
-            # Test Prometheus data source connection
+
             test_query = {"query": "up"}
             response = self.session.post(
                 f"{self.grafana_url}/api/ds/query",
@@ -263,26 +212,18 @@ class GrafanaClient:
                 },
                 timeout=self.timeout
             )
-            
+
             if response.status_code == 200:
                 logger.info("Prometheus data source is working in Grafana")
                 return True
             else:
                 logger.warning(f"Prometheus data source test returned: {response.status_code}")
                 return False
-                
+
         except Exception as e:
             logger.error(f"Failed to verify Prometheus data source: {e}")
             return False
-    
+
     def get_dashboard_url(self, dashboard_uid: str) -> str:
-        """
-        Get the URL for accessing a dashboard
-        
-        Args:
-            dashboard_uid: Dashboard UID
-            
-        Returns:
-            Dashboard URL
-        """
+
         return f"{self.grafana_url}/d/{dashboard_uid}"

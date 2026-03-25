@@ -1,4 +1,0 @@
-"""
-CLI module for MOrA
-"""
-

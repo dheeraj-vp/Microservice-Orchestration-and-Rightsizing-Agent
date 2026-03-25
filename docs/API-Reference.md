@@ -156,6 +156,145 @@ python3 -m src.mora.cli.main clean experiments --confirm
 python3 -m src.mora.cli.main clean experiments --service frontend --confirm
 ```
 
+##### 4. Evaluation Commands (Phase 4)
+
+###### `evaluate run-experiment`
+```bash
+python3 -m src.mora.cli.main evaluate run-experiment [OPTIONS]
+```
+
+**Description**: Run comparative evaluation experiments (Phase 4)
+
+**Options**:
+- `--service TEXT`: Service name to evaluate (required)
+- `--strategies TEXT`: Comma-separated list of strategies (default: "statistical,predictive")
+- `--load-levels TEXT`: Comma-separated list of load levels (default: "20")
+- `--replicas TEXT`: Comma-separated list of replica counts (default: "1,2,4")
+- `--scenarios TEXT`: Comma-separated list of scenarios (default: "browsing")
+- `--output-dir TEXT`: Output directory for results (default: "evaluation_results")
+- `--help`: Show help message
+
+**Examples**:
+```bash
+# Run POC evaluation (single service, single load level)
+python3 -m src.mora.cli.main evaluate run-experiment \
+    --service checkoutservice \
+    --strategies "statistical,predictive" \
+    --load-levels "20" \
+    --replicas "1,2,4" \
+    --scenarios "browsing" \
+    --output-dir evaluation_results
+
+# Run full evaluation (all strategies, all load levels)
+python3 -m src.mora.cli.main evaluate run-experiment \
+    --service checkoutservice \
+    --strategies "statistical,predictive,hpa" \
+    --load-levels "10,20,50,100,150,200" \
+    --replicas "1,2,4,6" \
+    --scenarios "browsing,checkout" \
+    --output-dir evaluation_results
+```
+
+**Returns**:
+```json
+{
+    "status": "completed",
+    "total_experiments": 15,
+    "successful_experiments": 15,
+    "failed_experiments": 0,
+    "output_directory": "evaluation_results",
+    "results_file": "evaluation_results/checkoutservice_comparative_results.json"
+}
+```
+
+###### `evaluate analyze`
+```bash
+python3 -m src.mora.cli.main evaluate analyze [OPTIONS]
+```
+
+**Description**: Analyze evaluation results and generate reports
+
+**Options**:
+- `--service TEXT`: Service name to analyze (required)
+- `--input-dir TEXT`: Input directory with results (default: "evaluation_results")
+- `--output-dir TEXT`: Output directory for reports (default: "evaluation_results/reports")
+- `--help`: Show help message
+
+**Examples**:
+```bash
+# Analyze evaluation results
+python3 -m src.mora.cli.main evaluate analyze \
+    --service checkoutservice \
+    --input-dir evaluation_results \
+    --output-dir evaluation_results/reports
+```
+
+**Returns**:
+```json
+{
+    "status": "completed",
+    "report_file": "evaluation_results/reports/checkoutservice_comparative_report.md",
+    "analysis": {
+        "cost_efficiency": {
+            "cpu_savings_percent": 28.17,
+            "memory_savings_percent": 28.17
+        },
+        "performance_integrity": {
+            "p95_latency": 0.0,
+            "error_rate": 0.0
+        },
+        "stability": {
+            "volatility": 0.0,
+            "scaling_events": 0
+        }
+    }
+}
+```
+
+##### 5. Rightsizing Commands
+
+###### `rightsize`
+```bash
+python3 -m src.mora.cli.main rightsize [OPTIONS]
+```
+
+**Description**: Generate resource rightsizing recommendations
+
+**Options**:
+- `--services TEXT`: Comma-separated list of services (required)
+- `--strategy TEXT`: Rightsizing strategy (default: "predictive")
+- `--output-format TEXT`: Output format (default: "table")
+- `--help`: Show help message
+
+**Examples**:
+```bash
+# Generate recommendations for multiple services
+python3 -m src.mora.cli.main rightsize \
+    --services "frontend,cartservice,checkoutservice" \
+    --strategy predictive \
+    --output-format table
+```
+
+**Returns**:
+```json
+{
+    "recommendations": {
+        "frontend": {
+            "cpu_cores": 0.5,
+            "memory_gb": 0.5,
+            "replicas": 2
+        },
+        "cartservice": {
+            "cpu_cores": 0.25,
+            "memory_gb": 0.25,
+            "replicas": 1
+        }
+    },
+    "strategy": "predictive",
+    "timestamp": "2026-01-21T12:00:00Z"
+}
+```
+
 ## Core Module APIs
 
 ### DataAcquisitionPipeline
@@ -824,7 +963,7 @@ config = {
 ---
 
 **API Reference Version**: 1.0  
-**Last Updated**: October 25, 2024  
+**Last Updated**: January 21, 2026  
 **Compatible With**: MOrA v1.0  
 **API Type**: CLI + Python Module APIs  
 **Documentation**: Comprehensive with examples and return types

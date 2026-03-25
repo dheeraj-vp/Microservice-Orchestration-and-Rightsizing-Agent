@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# System Resource Checker for MOrA Data Collection
-# Ensures system has enough resources before starting data collection
+
+
 
 echo "=========================================="
 echo "🔍 SYSTEM RESOURCE CHECK"
@@ -9,7 +9,7 @@ echo "=========================================="
 echo "Timestamp: $(date)"
 echo ""
 
-# Check available memory
+
 echo "💾 MEMORY STATUS:"
 total_mem=$(free -m | awk 'NR==2{printf "%.0f", $2}')
 available_mem=$(free -m | awk 'NR==2{printf "%.0f", $7}')
@@ -30,7 +30,7 @@ else
     echo "   ✅ Memory status: OK"
 fi
 
-# Check CPU usage
+
 echo ""
 echo "🖥️  CPU STATUS:"
 cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)
@@ -43,7 +43,7 @@ else
     echo "   ✅ CPU status: OK"
 fi
 
-# Check disk space
+
 echo ""
 echo "💿 DISK STATUS:"
 disk_usage=$(df -h . | tail -1 | awk '{print $5}' | cut -d'%' -f1)
@@ -58,7 +58,7 @@ else
     echo "   ✅ Disk status: OK"
 fi
 
-# Check running processes
+
 echo ""
 echo "🔄 RUNNING PROCESSES:"
 heavy_processes=$(ps aux --sort=-%cpu | head -10 | grep -v "USER\|%CPU" | awk '{if($3>10.0) print $2, $3, $11}' | head -5)
@@ -72,7 +72,7 @@ else
     echo "   ✅ No heavy processes detected"
 fi
 
-# Overall recommendation
+
 echo ""
 echo "📋 RECOMMENDATION:"
 if [ $mem_usage_percent -gt 80 ] || (( $(echo "$cpu_usage > 80" | bc -l) )) || [ $disk_usage -gt 90 ]; then

@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""
-Model Persistence Tests
-
-Tests for model save and load operations including:
-- Pipeline saving
-- Model loading
-- Metadata preservation
-- Error handling
-"""
 
 import os
 import sys
@@ -20,32 +11,30 @@ from unittest.mock import Mock, patch
 import joblib
 import pickle
 
-# Add src to path
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-
 class TestModelPersistence:
-    """Test model persistence operations"""
-    
+
     def setup_method(self):
-        """Set up test environment"""
+
         self.temp_dir = tempfile.mkdtemp()
         self.model_dir = os.path.join(self.temp_dir, 'models')
         os.makedirs(self.model_dir, exist_ok=True)
-    
+
     def teardown_method(self):
-        """Clean up test environment"""
+
         shutil.rmtree(self.temp_dir)
-    
+
     def create_sample_pipeline_data(self):
-        """Create sample pipeline data for testing"""
-        # Use simple objects that can be pickled instead of Mocks
+
+
         class DummyScaler:
             def transform(self, X):
                 return X
             def fit(self, X):
                 return self
-        
+
         return {
             'pipeline_type': 'lightweight_lstm_prophet',
             'trained_at': pd.Timestamp.now().isoformat(),
@@ -59,146 +48,146 @@ class TestModelPersistence:
             'lstm_models': {'cpu_target': {'mse': 0.1}, 'memory_target': {'mse': 0.2}},
             'config': {'epochs': 20, 'batch_size': 16}
         }
-    
+
     def test_save_pipeline(self):
-        """Test saving a pipeline"""
+
         pipeline_data = self.create_sample_pipeline_data()
-        
+
         model_path = os.path.join(self.model_dir, 'frontend_lstm_prophet_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
+
         assert os.path.exists(model_path)
         assert os.path.getsize(model_path) > 0
-    
+
     def test_load_pipeline(self):
-        """Test loading a saved pipeline"""
+
         pipeline_data = self.create_sample_pipeline_data()
-        
+
         model_path = os.path.join(self.model_dir, 'frontend_lstm_prophet_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
-        # Load the pipeline
+
+
         loaded_pipeline = joblib.load(model_path)
-        
+
         assert loaded_pipeline is not None
         assert loaded_pipeline['pipeline_type'] == 'lightweight_lstm_prophet'
         assert loaded_pipeline['service_name'] == 'frontend'
         assert 'target_columns' in loaded_pipeline
-    
+
     def test_pipeline_metadata_preservation(self):
-        """Test that metadata is preserved when saving/loading"""
+
         pipeline_data = self.create_sample_pipeline_data()
         original_timestamp = pipeline_data['trained_at']
         original_config = pipeline_data['config']
-        
+
         model_path = os.path.join(self.model_dir, 'frontend_lstm_prophet_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
+
         loaded_pipeline = joblib.load(model_path)
-        
+
         assert loaded_pipeline['trained_at'] == original_timestamp
         assert loaded_pipeline['config'] == original_config
         assert len(loaded_pipeline['target_columns']) == 3
         assert len(loaded_pipeline['feature_columns']) == 2
-    
+
     def test_load_nonexistent_pipeline(self):
-        """Test loading a non-existent pipeline"""
+
         model_path = os.path.join(self.model_dir, 'nonexistent_lstm_prophet_pipeline.joblib')
-        
+
         with pytest.raises(FileNotFoundError):
             joblib.load(model_path)
-    
+
     def test_load_corrupted_pipeline(self):
-        """Test loading a corrupted pipeline file"""
+
         bad_file = os.path.join(self.model_dir, 'corrupted_pipeline.joblib')
         with open(bad_file, 'w') as f:
             f.write("not a valid joblib file")
-        
+
         with pytest.raises((ValueError, EOFError, pickle.UnpicklingError)):
             joblib.load(bad_file)
-    
+
     def test_save_multiple_services(self):
-        """Test saving pipelines for multiple services"""
+
         services = ['frontend', 'cartservice', 'checkoutservice']
-        
+
         for service in services:
             pipeline_data = self.create_sample_pipeline_data()
             pipeline_data['service_name'] = service
-            
+
             model_path = os.path.join(self.model_dir, f'{service}_lstm_prophet_pipeline.joblib')
             joblib.dump(pipeline_data, model_path)
-        
-        # Verify all files exist
+
+
         for service in services:
             model_path = os.path.join(self.model_dir, f'{service}_lstm_prophet_pipeline.joblib')
             assert os.path.exists(model_path)
-            
-            # Load and verify
+
+
             loaded = joblib.load(model_path)
             assert loaded['service_name'] == service
-    
+
     def test_pipeline_version_compatibility(self):
-        """Test pipeline version compatibility"""
-        # Create pipeline with version info
+
+
         pipeline_data = self.create_sample_pipeline_data()
         pipeline_data['version'] = '1.0.0'
-        
+
         model_path = os.path.join(self.model_dir, 'versioned_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
+
         loaded = joblib.load(model_path)
         assert loaded.get('version') == '1.0.0'
-    
+
     def test_pipeline_with_custom_metadata(self):
-        """Test saving pipeline with custom metadata"""
+
         pipeline_data = self.create_sample_pipeline_data()
         pipeline_data['custom_metadata'] = {
             'training_duration': 120.5,
             'data_source': 'production',
             'model_config': {'learning_rate': 0.001}
         }
-        
+
         model_path = os.path.join(self.model_dir, 'custom_metadata_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
+
         loaded = joblib.load(model_path)
         assert 'custom_metadata' in loaded
         assert loaded['custom_metadata']['training_duration'] == 120.5
-    
+
     def test_pipeline_file_size(self):
-        """Test that pipeline file size is reasonable"""
+
         pipeline_data = self.create_sample_pipeline_data()
-        
+
         model_path = os.path.join(self.model_dir, 'frontend_lstm_prophet_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
+
         file_size = os.path.getsize(model_path)
-        
-        # Should be reasonable size (less than 100MB for lightweight pipeline)
+
+
         assert file_size < 100 * 1024 * 1024
-        
-        # Should have some content
+
+
         assert file_size > 0
-    
+
     def test_concurrent_save_load(self):
-        """Test concurrent save/load operations"""
+
         pipeline_data = self.create_sample_pipeline_data()
-        
-        # Simulate concurrent operations
+
+
         model_path = os.path.join(self.model_dir, 'concurrent_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
-        # Immediately load
+
+
         loaded = joblib.load(model_path)
-        
+
         assert loaded is not None
         assert loaded['service_name'] == 'frontend'
-    
+
     def test_pipeline_with_complex_objects(self):
-        """Test saving pipeline with complex objects"""
+
         pipeline_data = self.create_sample_pipeline_data()
-        
-        # Add complex nested structures
+
+
         pipeline_data['metadata'] = {
             'training_history': {
                 'epochs': [1, 2, 3, 4, 5],
@@ -211,60 +200,56 @@ class TestModelPersistence:
                 'load_users': 0.3
             }
         }
-        
+
         model_path = os.path.join(self.model_dir, 'complex_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
+
         loaded = joblib.load(model_path)
         assert 'metadata' in loaded
         assert 'training_history' in loaded['metadata']
         assert 'feature_importance' in loaded['metadata']
 
-
 class TestModelPersistenceIntegration:
-    """Integration tests for complete persistence workflows"""
-    
+
     def setup_method(self):
-        """Set up test environment"""
+
         self.temp_dir = tempfile.mkdtemp()
         self.model_dir = os.path.join(self.temp_dir, 'models')
         self.data_dir = os.path.join(self.temp_dir, 'training_data')
         os.makedirs(self.model_dir, exist_ok=True)
         os.makedirs(self.data_dir, exist_ok=True)
-    
+
     def teardown_method(self):
-        """Clean up test environment"""
+
         shutil.rmtree(self.temp_dir)
-    
+
     def test_complete_save_load_cycle(self):
-        """Test complete save and load cycle"""
-        # Create sample data
+
+
         data = pd.DataFrame({
             'timestamp': pd.date_range('2024-01-01', periods=100, freq='5min'),
             'cpu_cores_value': np.random.rand(100),
             'mem_bytes_value': np.random.rand(100) * 1000000
         })
-        
-        # Save model
+
+
         pipeline_data = {
             'pipeline_type': 'lightweight_lstm_prophet',
             'trained_at': pd.Timestamp.now().isoformat(),
             'service_name': 'frontend',
             'data_shape': data.shape
         }
-        
+
         model_path = os.path.join(self.model_dir, 'frontend_lstm_prophet_pipeline.joblib')
         joblib.dump(pipeline_data, model_path)
-        
-        # Load model
+
+
         loaded = joblib.load(model_path)
-        
-        # Verify data integrity
+
+
         assert loaded['service_name'] == 'frontend'
         assert loaded['pipeline_type'] == 'lightweight_lstm_prophet'
         assert loaded['data_shape'] == data.shape
 
-
 if __name__ == '__main__':
     pytest.main([__file__, '-v'])
-
